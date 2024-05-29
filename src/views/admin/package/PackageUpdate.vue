@@ -223,7 +223,7 @@
                             <div v-for="(item, index) in tableData" :key="index" class="md:w-1/4 w-full">
                                <div @click="iconUrl(item.url)" class="px-4 py-4">
                                  <div>
-                                    <img :src="item.url" alt="">
+                                    <img class="h-full md:h-24 w-full" :src="item.url" alt="">
                                 </div>
                                 <p class="text-center">{{item.name}}</p>
                                </div>
@@ -250,7 +250,7 @@
                             <div v-for="(item, index) in tableData" :key="index" class="md:w-1/4 w-full">
                                <div @click="bannerUrl(item.url)" class="px-4 py-4">
                                  <div>
-                                    <img :src="item.url" alt="">
+                                    <img class="h-full md:h-24 w-full" :src="item.url" alt="">
                                 </div>
                                 <p class="text-center">{{item.name}}</p>
                                </div>
