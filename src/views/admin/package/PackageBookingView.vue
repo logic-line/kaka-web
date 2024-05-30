@@ -22,7 +22,6 @@
             <p class="py-2">Package Booking Details</p>
         </div>
          <div>
-         <!-- v-model="form.offer_applicable"  -->
             <select @change="changeStatus" name="status-update" class="modal-input-style">
                 <option value="" selected disabled>Update Status</option>
                 <option  value="0">CREATED</option>
@@ -35,7 +34,8 @@
          </div>
        
       </div>
-      <div class="pt-4">
+     <div v-if="userData!==null">
+       <div class="pt-4">
           <p class="text-center uppercase font-semibold bg-gray-300 py-2">User Details</p>
           <div class="flex justify-center py-4">
                 <img class="w-32 rounded-full"
@@ -70,16 +70,10 @@
           </div>
         </div>
 
-        <!-- <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
-          <div class="w-full flex">
-            <div class="w-1/2 font-semibold text-sm">Photo</div>
-            <div class="w-1/2 text-sm">
-              <img class="" :src="userData.photo_url" alt="photo">
-            </div>
-          </div>
-        </div> -->
       </div>
-      <div class="">
+     </div>
+      <div v-if="packageData!==null">
+        <div class="">
           <p class="text-center uppercase font-semibold bg-gray-300 py-2">Package Details</p>
       </div>
       <div class="my-4 flex flex-wrap bg-gray-50">
@@ -189,7 +183,9 @@
           </div>
         </div>
       </div>
-      <div class="">
+      </div>
+      <div v-if="paymentData!==null">
+        <div class="">
           <p class="text-center uppercase font-semibold bg-gray-300 py-2">Payment Info.</p>
       </div>
       <div class="my-4 flex flex-wrap bg-gray-50">
@@ -267,7 +263,9 @@
           </div>
         </div>
       </div>
-      <div class="">
+      </div>
+      <div v-if="offerData!==null">
+        <div>
           <p class="text-center uppercase font-semibold bg-gray-300 py-2">Offer Info.</p>
       </div>
       <div class="my-4 flex flex-wrap bg-gray-50">
@@ -279,14 +277,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
-          <div class="w-full flex">
-            <div class="w-1/2 font-semibold text-sm">title</div>
-            <div class="w-1/2 text-sm">
-              {{ offerData.title }}
-            </div>
-          </div>
-        </div> -->
         <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
           <div class="w-full flex">
             <div class="w-1/2 font-semibold text-sm">Min Amount Required</div>
@@ -328,7 +318,17 @@
             </div>
           </div>
         </div>
+        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
+          <div class="w-full flex">
+            <div class="w-1/2 font-semibold text-sm">title</div>
+            <div class="w-1/2 text-sm">
+              {{ offerData.title }}
+            </div>
+          </div>
+        </div>
       </div>
+      </div>
+      
     </div>
   </div>
 </template>
@@ -383,6 +383,7 @@ export default defineComponent({
         .GetPackageBookingView(state.packageBookingID)
         .then((response: any) => {
           if (response !== undefined) {
+            console.log("resp",response.data)
             state.viewData = response.data;
             state.paymentData = response.data.payment;
             state.packageData = response.data.package;
