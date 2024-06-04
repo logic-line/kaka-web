@@ -341,7 +341,7 @@ import QurbaniService from "../../../services/qurbani";
 import { CreateQurbaniImage,DeleteQurbaniImage,DeleteQurbaniAnimalType,CreateQurbaniAnimalType,UpdateQurbaniAnimalType } from '../../../types/qurbani';
 import { SaveImageRequest } from '../../../types/imageupload';
 import ImageService from "../../../services/imageUpload";
-import config from '../../../../../web/src/config';
+import config from '../../../../src/config';
 import router from '../../../../../web/src/router';
 import axios from 'axios';
 import useVuelidate from '@vuelidate/core';
