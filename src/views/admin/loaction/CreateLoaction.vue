@@ -300,7 +300,7 @@ import { email, helpers, integer, maxLength, minLength, numeric, required, url }
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import Loader from '../../../components/comp/Loader.vue';
-import config from '../../../../../web/src/config';
+import config from '../../../../src/config';
 import { GoogleMap, Marker } from 'vue3-google-map';
 import axios from 'axios';
 
