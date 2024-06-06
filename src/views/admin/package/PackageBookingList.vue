@@ -165,7 +165,7 @@ export default defineComponent({
                 if(response !== undefined){
                     state.tableData = response.data.data
                     state.totalPage = response.data.totalPage
-                    state.totalRowsPerPage = response.data.perPage
+                    state.totalRowsPerPage = response.data.data.length
                     state.limit = response.data.perPage
                     
                 }

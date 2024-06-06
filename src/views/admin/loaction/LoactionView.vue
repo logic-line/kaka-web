@@ -88,8 +88,8 @@ import PageHeader from '../../../components/list/PageHeader.vue';
 import Loader from '../../../components/comp/Loader.vue';
 import ImageService from "../../../services/imageUpload";
 import LocationService from '../../../services/location';
-import config from '../../../../src/config';
-import router from '../../../../../web/src/router';
+import config from '../../../../../kaka-web/src/config';
+import router from '../../../../../kaka-web/src/router';
 
 
 

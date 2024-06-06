@@ -1,34 +1,22 @@
 // @ts-ignore
-import { PackageListRequest, PackageCreateRequest, PackageUpdateRequest,PackageBookingListRequest,BookingStatusUpdateRequest } from "@/types/package";
+import { CategoryListRequest, CategoryCreateRequest, CategoryUpdateRequest,PackageBookingListRequest,BookingStatusUpdateRequest } from "@/types/category";
 import { FetchData } from "@/utils/fetch-utils";
 import config from "@/config";
 import store from '../../store';
 import axios, { AxiosRequestConfig } from 'axios';
-export default class PackageService {
+export default class CategoryService {
 
   private genericErrorMessage =
     "Connection to the network failed. Please contact our support team example@example.com.";
 
-    public CreatePackage(payload: PackageCreateRequest): Promise<any> {
+    public CreateCategory(payload: CategoryCreateRequest): Promise<any> {
       const token = localStorage.getItem('token');
-      const url = config.authUrl + "/package";
+      const url = config.authUrl + "/product/category";
       return axios.post(url,{
-        name: payload.name,
-        source: payload.source,
-        destination: payload.destination,
+        title: payload.title,
         description: payload.description,
-        duration: payload.duration,
-        days: payload.days,
-        nights: payload.nights,
-        persons: payload.persons,
-        base_price: payload.base_price,
-        discount_price: payload.discount_price,
-        price: payload.price,
-        booking_amount: payload.booking_amount,
-        offer_applicable: payload.offer_applicable,
         icon: payload.icon,
         banner: payload.banner,
-        thing_will_love: payload.thing_will_love,
        },{
         headers : { 
           'Authorization':'Bearer '+token,
@@ -44,27 +32,15 @@ export default class PackageService {
       .finally(function () {
       });
     }
-    public UpdatePackage(payload: PackageUpdateRequest): Promise<any> {
+    public UpdateCategory(payload: CategoryUpdateRequest): Promise<any> {
       const token = localStorage.getItem('token');
       var ID = payload.id
-      const url = config.authUrl + "/package/" +ID;
+      const url = config.authUrl + "/product/category/" +ID;
       return axios.put(url,{
-        name: payload.name,
-        source: payload.source,
-        destination: payload.destination,
+        title: payload.title,
         description: payload.description,
-        duration: payload.duration,
-        days: payload.days,
-        nights: payload.nights,
-        persons: payload.persons,
-        base_price: payload.base_price,
-        discount_price: payload.discount_price,
-        price: payload.price,
-        booking_amount: payload.booking_amount,
-        offer_applicable: payload.offer_applicable,
         icon: payload.icon,
         banner: payload.banner,
-        thing_will_love: payload.thing_will_love,
        },{
         headers : { 
           'Authorization':'Bearer '+token,
@@ -81,15 +57,13 @@ export default class PackageService {
       });
     }
 
-  public listOfPackage(payload: PackageListRequest): Promise<any> {
+  public listOfCategory(payload: CategoryListRequest): Promise<any> {
     return new Promise((resolve, reject) => {
       const params = {
         perPage: payload.perPage,
         page: payload.page,
-        enabled: payload.enabled,
-        withLocations: payload.withLocations,
       };
-      const url = config.authUrl + "/package";
+      const url = config.authUrl + "/product/category";
       const token = localStorage.getItem('token');
       const headers: AxiosRequestConfig['headers'] = {
         'X-API-KEY': config.apiKey,
@@ -99,22 +73,21 @@ export default class PackageService {
   
       axios.get(url, { params, headers},)
         .then(function (response) {
-          console.log(response)
-          resolve(response.data); // Resolve the promise with the response data
+          resolve(response.data);
         })
         .catch(function (error) {
-          reject(error); // Reject the promise with the error
+          reject(error);
         });
     });
   }
 
-  public GetPackageView(payload: string) {
+  public GetCategoryView(payload: string) {
     return new Promise((resolve, reject) => {
       const params = {
         packageId: payload,
       };
       console.log("config.authUrl",config.authUrl)
-      const url = config.authUrl + "/package/"+payload+"";
+      const url = config.authUrl + "/product/category/"+payload;
       const token = localStorage.getItem('token');
       const headers: AxiosRequestConfig['headers'] = {
         'X-API-KEY': config.apiKey,
@@ -151,14 +124,15 @@ export default class PackageService {
         });
     });
    }
-  public RemovePackage(payload: string) {
+  public RemoveCategory(payload: string) {
     return new Promise((resolve, reject) => {
       const params = {
         packageId: payload,
       };
-      const url = config.authUrl + "/package/"+payload+"";
+      const url = config.authUrl + "/product/category/"+payload;
       const token = localStorage.getItem('token');
       const headers: AxiosRequestConfig['headers'] = {
+        'X-API-KEY': config.apiKey,
         'Authorization': 'Bearer ' + token ,
         'Content-Type': 'application/json',
       };

@@ -52,22 +52,7 @@
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
-          <div class="w-full flex">
-            <div class="w-1/2 font-semibold text-sm">Message</div>
-            <div class="w-1/2 text-sm">
-              {{ viewData.message }}
-            </div>
-          </div>
-        </div>
-        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
-          <div class="w-full flex">
-            <div class="w-1/2 font-semibold text-sm">Reason</div>
-            <div class="w-1/2 text-sm">
-              {{ viewData.reason }}
-            </div>
-          </div>
-        </div>
+        
         <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
           <div class="w-full flex">
             <div class="w-1/2 font-semibold text-sm">Status</div>
@@ -206,13 +191,13 @@
         </div>
         <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
           <div class="w-full flex">
-            <div class="w-1/2 font-semibold text-sm">Qurbani Animal Description</div>
+            <div class="w-1/2 font-semibold text-sm">Qurbani Animal Type</div>
             <div class="w-1/2 text-sm">
-              {{ qurbaniData.description }}
+              {{animalTypeData.type}}
             </div>
           </div>
         </div>
-         <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
+        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
           <div class="w-full flex">
             <div class="w-1/2 font-semibold text-sm">images</div>
             <div class="w-1/2 text-sm">
@@ -220,14 +205,31 @@
             </div>
           </div>
         </div>
-         <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
-          <div class="w-full flex">
-            <div class="w-1/2 font-semibold text-sm">Qurbani Animal Type</div>
-            <div class="w-1/2 text-sm">
-              {{animalTypeData.type}}
+         <div class="w-full px-4 py-4 border border-gray-200">
+          <div class="w-full">
+            <div class="font-semibold text-sm">Message</div>
+            <div class="text-sm">
+              {{ viewData.message }}
             </div>
           </div>
         </div>
+        <div class="w-full px-4 py-4 border border-gray-200">
+          <div class="w-full">
+            <div class="font-semibold text-sm">Reason</div>
+            <div class="text-sm">
+              {{ viewData.reason }}
+            </div>
+          </div>
+        </div>
+        <div class="w-full px-4 py-4 border border-gray-200">
+          <div class="w-full">
+            <div class="font-semibold text-sm">Qurbani Animal Description</div>
+            <div class="text-sm">
+              {{ qurbaniData.description }}
+            </div>
+          </div>
+        </div>
+         
       </div>
     </div>
   </div>
