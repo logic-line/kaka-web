@@ -52,6 +52,10 @@ import ProductList from "../views/admin/ecommerce/product/ProductList.vue";
 import ProductView from "../views/admin/ecommerce/product/ProductView.vue";
 import ProductUpdate from "../views/admin/ecommerce/product/ProductUpdate.vue";
 
+import CabBookingList from "../views/admin/cab/CabBookingList.vue";
+import CabView from "../views/admin/cab/CabView.vue";
+import CabUpdate from "../views/admin/cab/CabUpdate.vue";
+
 
 const routes: Array<RouteRecordRaw> = [
   // admin routes
@@ -96,6 +100,10 @@ const routes: Array<RouteRecordRaw> = [
       { path: "/admin/ecommerce/products", name: "product-list", component: ProductList, meta: { name: "product" ,title:"List product"} },
       { path: "/admin/ecommerce/product/:id/view", name: "product-view", component: ProductView, meta: { name: "product" ,title:"view product"} },
       { path: "/admin/ecommerce/product/:id/update", name: "product-update", component: ProductUpdate, meta: { name: "product" ,title:"update product"} },
+
+      { path: "/admin/cab/booking", name: "cab-booking-list", component: CabBookingList, meta: { name: "cabbooking" ,title:"List Cab Booking"} },
+      { path: "/admin/cab/:id/view", name: "cab-view", component: CabView, meta: { name: "cab",title:"view cab" } },
+      { path: "/admin/cab/:id/update", name: "cab-update", component: CabUpdate, meta: { name: "cab",title:"update cab" } },
 
 
 
