@@ -189,10 +189,7 @@
               </li> -->
               <li>
                 <div @click="openSidebarDrop('location')" class="mt-2 capitalize group w-full flex items-center px-4 py-3.5 pr-12 cursor-pointer relative">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-                  </svg>
+                  <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path class="fa-secondary" opacity=".4" d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 112a80 80 0 1 1 0 160 80 80 0 1 1 0-160z"/><path class="fa-primary" d="M192 144a48 48 0 1 0 0 96 48 48 0 1 0 0-96z"/></svg>
 
                   <p class="pl-2">{{ $t('message.location') }}</p>
                   <div class="group-hover:block absolute left-0 w-1 h-full bg-kakaPrimary rounded-r-lg" :class="sidebarL1Menu=='location' ? 'block': 'hidden'"></div>
@@ -363,7 +360,7 @@
               </li>
               <li>
                 <div @click="openSidebarDrop('package')" class="mt-2 capitalize group w-full flex items-center px-4 py-3.5 pr-12 cursor-pointer relative">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 512 512"><path d="M256 480C132.3 480 32 379.7 32 256c0-11.8 .9-23.3 2.7-34.6l3 6.7c9.3 21 27.3 37 49.2 43.9l63 19.7c15.5 4.9 26.1 19.2 26.1 35.5v15c0 17 9.6 32.6 24.8 40.2c4.4 2.2 7.2 6.7 7.2 11.6v22.7c0 26.2 21.2 47.4 47.4 47.4c21.8 0 40.7-14.8 46-35.9l4.4-17.6c2.6-10.2 9.2-19 18.3-24.2l11.6-6.6c19.9-11.4 32.2-32.6 32.2-55.6v-8.3c0-17-6.7-33.3-18.7-45.3l-3.9-3.9c-12-12-28.3-18.7-45.3-18.7H251.3c-5 0-9.9-1.2-14.3-3.4l-45.9-22.9c-2.1-1-3.8-2.7-4.8-4.8l-.7-1.4c-2.3-4.6-.4-10.2 4.2-12.5c2.2-1.1 4.8-1.3 7.1-.5l24.2 8.1c15 5 31.5-.7 40.3-13.8c8.6-12.9 7.7-30-2.2-41.9l-17.9-21.5c-2.5-3-2.5-7.4 .1-10.3l20.1-23.5c13.2-15.4 15.3-37.4 5.2-55.1L259.6 32C337.1 33.2 405 73.8 444.3 134.6l-38.2 15.3c-23.6 9.4-35.7 35.6-27.7 59.7l16.9 50.7c5.2 15.6 18 27.4 33.9 31.4L475 303.2C453.3 404.3 363.5 480 256 480zM48 172.7C77.3 99.7 143.8 45.7 224 34.3l14.9 26.1c3.4 5.9 2.7 13.2-1.7 18.4l-20.1 23.5c-12.7 14.8-12.9 36.6-.4 51.6l17.9 21.5c.9 1.1 1 2.6 .2 3.7c-.8 1.2-2.2 1.7-3.6 1.2L207 172.1c-10.4-3.5-21.7-2.7-31.5 2.2c-20.4 10.2-28.7 35-18.5 55.4l.7 1.4c4.1 8.3 10.9 15 19.2 19.2l45.9 22.9c8.9 4.4 18.7 6.8 28.6 6.8h48.8c8.5 0 16.6 3.4 22.6 9.4l3.9 3.9c6 6 9.4 14.1 9.4 22.6v8.3c0 11.5-6.2 22.1-16.1 27.8l-11.6 6.6c-16.7 9.6-28.8 25.5-33.5 44.2l-4.4 17.6c-1.7 6.9-7.9 11.7-15 11.7c-8.5 0-15.4-6.9-15.4-15.4V393.9c0-17-9.6-32.6-24.8-40.2c-4.4-2.2-7.2-6.7-7.2-11.6v-15c0-30.3-19.7-57-48.6-66.1l-63-19.7c-13.2-4.1-23.9-13.7-29.5-26.3L48 172.7zM480 256c0 5.2-.2 10.3-.5 15.4l-42.6-10.6c-5.3-1.3-9.6-5.3-11.3-10.5l-16.9-50.7c-2.7-8 1.4-16.8 9.2-19.9l41.8-16.7c13 28.3 20.2 59.9 20.2 93.1zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>
+                  <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path class="fa-secondary" opacity=".4" d="M261.9 296c4.4-7.7 1.8-17.4-5.9-21.9s-17.4-1.8-21.9 5.9l-32 55.4L147.7 304c-15.3-8.8-34.9-3.6-43.7 11.7L40 426.6c-8.8 15.3-3.6 34.9 11.7 43.7l55.4 32c15.3 8.8 34.9 3.6 43.7-11.7l64-110.9c1.5-2.6 2.6-5.2 3.3-8L261.9 296z"/><path class="fa-primary" d="M384 48a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zM350.5 199.3c-1 .4-1.9 .8-2.9 1.2l-8 3.5c-16.4 7.3-29 21.2-34.7 38.2l-2.6 7.8c-5.6 16.8-23.7 25.8-40.5 20.2s-25.8-23.7-20.2-40.5l2.6-7.8c11.4-34.1 36.6-61.9 69.4-76.5l8-3.5c20.8-9.2 43.3-14 66.1-14c44.6 0 84.8 26.8 101.9 67.9L505 232.7l21.4 10.7c15.8 7.9 22.2 27.1 14.3 42.9s-27.1 22.2-42.9 14.3L471 287.3c-10.3-5.2-18.4-13.8-22.8-24.5l-9.6-23-19.3 65.5 49.5 54c5.4 5.9 9.2 13 11.2 20.8l23 92.1c4.3 17.1-6.1 34.5-23.3 38.8s-34.5-6.1-38.8-23.3l-22-88.1-70.7-77.1c-14.8-16.1-20.3-38.6-14.7-59.7l16.9-63.5zM292.7 398l25-62.4c2.1 3 4.5 5.8 7 8.6l40.7 44.4-14.5 36.2c-2.4 6-6 11.5-10.6 16.1l-61.7 61.7c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L292.7 398z"/></svg>
                   <p class="pl-2">{{ $t('message.package') }}</p>
                   <div class="group-hover:block absolute left-0 w-1 h-full bg-kakaPrimary rounded-r-lg" :class="sidebarL1Menu=='package' ? 'block': 'hidden'"></div>
                   
@@ -398,10 +395,34 @@
   
               </li>
               <li>
+                <div @click="openSidebarDrop('cab')" class="mt-2 capitalize group w-full flex items-center px-4 py-3.5 pr-12 cursor-pointer relative">
+                  <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path class="fa-secondary" opacity=".4" d="M171.3 128H224v96H111.3l30.4-75.9c4.9-12.1 16.6-20.1 29.7-20.1zM272 224V128h81.2c9.7 0 18.9 4.4 25 12l67.2 84H272zM64 432a80 80 0 1 1 160 0A80 80 0 1 1 64 432zm432-80a80 80 0 1 1 0 160 80 80 0 1 1 0-160z"/><path class="fa-primary" d="M171.3 128H224v96H111.3l30.4-75.9c4.9-12.1 16.6-20.1 29.7-20.1zM272 224V128h81.2c9.7 0 18.9 4.4 25 12l67.2 84H272zm256.2 1l-100-125c-18.2-22.8-45.8-36-75-36H171.3c-39.3 0-74.6 23.9-89.1 60.3L40.6 228.4C16.8 237.8 0 260.9 0 288V400c0 17.7 14.3 32 32 32c0-61.9 50.1-112 112-112s112 50.1 112 112H384c0-61.9 50.1-112 112-112s112 50.1 112 112c17.7 0 32-14.3 32-32V352c0-65.2-48.8-119-111.8-127z"/></svg>
+                  <p class="pl-2">{{ $t('cab') }}</p>
+                  <div class="group-hover:block absolute left-0 w-1 h-full bg-kakaPrimary rounded-r-lg" :class="sidebarL1Menu=='cab' ? 'block': 'hidden'"></div>
+                  
+                  <svg class="w-4 h-4 absolute right-6 duration-300" :class="sidebarL1Menu=='cab'? 'rotate-180':''" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                  </svg>    
+                </div>
+  
+                <transition name="menuAccordion"
+                    @enter="enter"
+                    @after-enter="afterEnter"
+                    @leave="leave">
+                    <ul v-show="sidebarL1Menu=='cab'" class="pl-6 overflow-hidden">
+                      <li>
+                        <router-link to="/admin/cab/booking" class="mt-3 sidebar-route capitalize group w-full flex items-center px-4 py-3 cursor-pointer relative">
+                          <p class="pl-2">List Cab Booking</p>  
+                        </router-link>
+                      </li>
+                     
+                    </ul>
+                </transition>
+  
+              </li>
+              <li>
                 <div @click="openSidebarDrop('uploadimage')" class="mt-2 capitalize group w-full flex items-center px-4 py-3.5 pr-12 cursor-pointer relative">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                  </svg>
+                  <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path class="fa-secondary" opacity=".4" d="M0 128v32H256 512V96c0-35.3-28.7-64-64-64H271.1c-9.9 0-19.7 2.3-28.6 6.8L192 64H64C28.7 64 0 92.7 0 128z"/><path class="fa-primary" d="M64 48c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16V64H64V48zM0 416V160H512V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64zm256-16a96 96 0 1 0 0-192 96 96 0 1 0 0 192z"/></svg>
 
                   <p class="pl-2">Images</p>
                   <div class="group-hover:block absolute left-0 w-1 h-full bg-kakaPrimary rounded-r-lg" :class="sidebarL1Menu=='uploadimage' ? 'block': 'hidden'"></div>
