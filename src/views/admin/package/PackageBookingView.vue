@@ -47,24 +47,24 @@
       <div class=" my-4 flex flex-wrap bg-gray-50">
         <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
           <div class="w-full flex">
-            <div class="w-1/2 font-semibold text-sm">Email</div>
-            <div class="w-1/2 text-sm">
+            <div class="font-semibold text-sm mr-2">Email</div>
+            <div class="text-sm">
               {{ userData.email }}
             </div>
           </div>
         </div>
         <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
           <div class="w-full flex">
-            <div class="w-1/2 font-semibold text-sm">Contact Number</div>
-            <div class="w-1/2 text-sm">
+            <div class="font-semibold text-sm mr-2">Contact Number</div>
+            <div class="text-sm">
               {{ userData.mobile }}
             </div>
           </div>
         </div>
         <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
           <div class="w-full flex">
-            <div class="w-1/2 font-semibold text-sm">Gender</div>
-            <div class="w-1/2 text-sm">
+            <div class="font-semibold text-sm mr-2">Gender</div>
+            <div class="text-sm">
               {{ userData.gender}}
             </div>
           </div>

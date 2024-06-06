@@ -155,7 +155,7 @@
         <!-- sidebar -->
         <div class="flex">
             <Transition name="slide-fade">
-            <ul v-if="mobile_sidebar_show" class="sidebar-min-width custom-shadow-sidebar pt-4 dark:text-white custom-height-screen customScrollY overflow-y-scroll lg:relative absolute bg-white dark:bg-black z-50">
+            <ul v-if="mobile_sidebar_show" class="sidebar-min-width h-full custom-shadow-sidebar pt-4 dark:text-white custom-height-screen customScrollY overflow-y-scroll lg:relative absolute bg-white dark:bg-black z-50">
               <!-- TODO: For now dashboard is commented out..Will work on it in future. -->
               <!-- <li>
                 <div @click="openSidebarDrop('userManagement')" class="mt-2 capitalize group w-full flex items-center px-4 py-3.5 pr-12 cursor-pointer relative">
@@ -267,6 +267,89 @@
                                <li>
                                 <router-link to="/admin/qurbanis/booking" class="mt-3 sidebar-route capitalize group w-full flex items-center px-4 py-3 cursor-pointer relative">
                                   <p class="pl-2">List Qurbani Booking</p>  
+                                </router-link>
+                              </li>
+                            </ul>
+                        </transition>
+          
+                      </li>
+                    </ul>
+                    
+                </transition>
+  
+              </li>
+              <li>
+                <div @click="openSidebarDrop('Ecommerce')" class="mt-2 capitalize group w-full flex items-center px-4 py-3.5 pr-12 cursor-pointer relative">
+                 <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path class="fa-secondary" opacity=".4" d="M64 192H96h32H320h64H512h32 32V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V224H384V384v80c0 26.5-21.5 48-48 48H112c-26.5 0-48-21.5-48-48V384 192zm256 32H128V384H320V224z"/><path class="fa-primary" d="M603.2 192H36.8C16.5 192 0 175.5 0 155.2c0-7.3 2.2-14.4 6.2-20.4L81.8 21.4C90.7 8 105.6 0 121.7 0H518.3c16.1 0 31 8 39.9 21.4l75.6 113.3c4 6.1 6.2 13.2 6.2 20.4c0 20.3-16.5 36.8-36.8 36.8z"/></svg>
+                  <p class="pl-2">{{ $t('Ecommerce') }}</p>
+                  <div class="group-hover:block absolute left-0 w-1 h-full bg-kakaPrimary rounded-r-lg" :class="sidebarL1Menu=='Ecommerce' ? 'block': 'hidden'"></div>
+                  
+                  <svg class="w-4 h-4 absolute right-6 duration-300" :class="sidebarL1Menu=='Ecommerce'? 'rotate-180':''" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                  </svg>    
+                </div>
+  
+                <transition name="menuAccordion"
+                    @enter="enter"
+                    @after-enter="afterEnter"
+                    @leave="leave">
+                    <ul v-show="sidebarL1Menu=='Ecommerce'" class="pl-6 overflow-hidden">
+                       <li>
+                        <div @click="openSidebarL2Drop('category')" class="mt-2 capitalize group w-full flex items-center px-4 py-3.5 pr-12 cursor-pointer relative">
+                          <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path class="fa-secondary" opacity=".4" d="M160 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zm32 128H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/><path class="fa-primary" d="M16 72c0-13.3 10.7-24 24-24H88c13.3 0 24 10.7 24 24v48c0 13.3-10.7 24-24 24H40c-13.3 0-24-10.7-24-24V72zm0 160c0-13.3 10.7-24 24-24H88c13.3 0 24 10.7 24 24v48c0 13.3-10.7 24-24 24H40c-13.3 0-24-10.7-24-24V232zM40 368H88c13.3 0 24 10.7 24 24v48c0 13.3-10.7 24-24 24H40c-13.3 0-24-10.7-24-24V392c0-13.3 10.7-24 24-24z"/></svg>
+
+                          <p class="pl-2">category</p>
+                          <div class="group-hover:block absolute left-0 w-1 h-full bg-kakaPrimary rounded-r-lg" :class="sidebarL2Menu=='category' ? 'block': 'hidden'"></div>
+                          
+                          <svg class="w-4 h-4 absolute right-6 duration-300" :class="sidebarL2Menu=='category'? 'rotate-180':''" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                          </svg>    
+                        </div>
+          
+                        <transition name="menuAccordion"
+                            @enter="enter"
+                            @after-enter="afterEnter"
+                            @leave="leave">
+                            <ul v-show="sidebarL2Menu=='category'" class="pl-6 overflow-hidden">
+                              <li>
+                                <router-link to="/admin/ecommerce/categorys" class="mt-3 sidebar-route capitalize group w-full flex items-center px-4 py-3 cursor-pointer relative">
+                                  <p class="pl-2">List category</p>  
+                                </router-link>
+                              </li>
+                              <li>
+                                <router-link to="/admin/ecommerce/category/create" class="mt-3 sidebar-route capitalize group w-full flex items-center px-4 py-3 cursor-pointer relative">
+                                  <p class="pl-2">Create category</p>  
+                                </router-link>
+                              </li>
+                            </ul>
+                        </transition>
+          
+                      </li>
+                       <li>
+                        <div @click="openSidebarL2Drop('product')" class="mt-2 capitalize group w-full flex items-center px-4 py-3.5 pr-12 cursor-pointer relative">
+                         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path class="fa-secondary" opacity=".4" d="M200.6 32C205 19.5 198.5 5.8 186 1.4S159.8 3.5 155.4 16L144.7 46.2l-9.9-29.8C130.6 3.8 117-3 104.4 1.2S85 19 89.2 31.6l9.4 28.3L71.2 37.4C60.9 29 45.8 30.5 37.4 40.8S30.5 66.2 40.8 74.6L67 96H221l26.2-21.4c10.3-8.4 11.8-23.5 3.4-33.8s-23.5-11.8-33.8-3.4L191.3 58.3 200.6 32zM592 224h-4.1c-9.9 28-36.6 48-67.9 48H448v80H640V272c0-26.5-21.5-48-48-48zM448 384V512H592c26.5 0 48-21.5 48-48V384H448zm-32 0H224v80c0 26.5 21.5 48 48 48H416V384zm0-32V272H400 344c-31.3 0-58-20-67.9-48H272c-26.5 0-48 21.5-48 48v80H416z"/><path class="fa-primary" d="M48 96C21.5 96 0 117.5 0 144V464c0 26.5 21.5 48 48 48H200.6c-5.4-9.4-8.6-20.3-8.6-32V256c0-29.9 20.5-55 48.2-62c1.8-31 17.1-58.2 40.1-76.1C271.7 104.7 256.9 96 240 96H48zm315.5 89.5L393.1 224H344c-13.3 0-24-10.7-24-24c0-13.1 10.8-24 24.2-24c7.6 0 14.7 3.5 19.3 9.5zM344 272h56 16v80H224v32H416V512h32V384H640V352H448V272h72c39.8 0 72-32.2 72-72c0-39.9-32.5-72-72.2-72c-22.4 0-43.6 10.4-57.3 28.2L432 195.8l-30.5-39.6c-13.7-17.8-35-28.2-57.3-28.2c-39.7 0-72.2 32.1-72.2 72c0 39.8 32.2 72 72 72zm175.8-96c13.4 0 24.2 10.9 24.2 24c0 13.3-10.7 24-24 24H470.9l29.6-38.5c4.6-5.9 11.7-9.5 19.3-9.5z"/></svg>
+
+                          <p class="pl-2">product</p>
+                          <div class="group-hover:block absolute left-0 w-1 h-full bg-kakaPrimary rounded-r-lg" :class="sidebarL2Menu=='product' ? 'block': 'hidden'"></div>
+                          
+                          <svg class="w-4 h-4 absolute right-6 duration-300" :class="sidebarL2Menu=='product'? 'rotate-180':''" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                          </svg>    
+                        </div>
+          
+                        <transition name="menuAccordion"
+                            @enter="enter"
+                            @after-enter="afterEnter"
+                            @leave="leave">
+                            <ul v-show="sidebarL2Menu=='product'" class="pl-6 overflow-hidden">
+                              <li>
+                                <router-link to="/admin/ecommerce/products" class="mt-3 sidebar-route capitalize group w-full flex items-center px-4 py-3 cursor-pointer relative">
+                                  <p class="pl-2">List product</p>  
+                                </router-link>
+                              </li>
+                              <li>
+                                <router-link to="/admin/ecommerce/product/create" class="mt-3 sidebar-route capitalize group w-full flex items-center px-4 py-3 cursor-pointer relative">
+                                  <p class="pl-2">Create product</p>  
                                 </router-link>
                               </li>
                             </ul>

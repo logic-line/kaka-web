@@ -132,9 +132,23 @@
         </div>
         <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
           <div class="w-full flex">
+            <div class="w-1/2 font-semibold text-sm">Thing Will Love</div>
+            <div class="w-1/2 text-sm">
+              <div
+                v-for="(item, index) in viewData.thing_will_love"
+                :key="index"
+                class="w-full"
+              >
+                <span class="inline-block ">{{ item }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
+          <div class="w-full flex">
             <div class="w-1/2 font-semibold text-sm">Icon</div>
             <div class="w-1/2 text-sm">
-              <img :src="viewData.icon" alt="icon" />
+              <img class="w-full h-28" :src="viewData.icon" alt="icon" />
             </div>
           </div>
         </div>
@@ -142,34 +156,27 @@
           <div class="w-full flex">
             <div class="w-1/2 font-semibold text-sm">Banner</div>
             <div class="w-1/2 text-sm">
-              <img :src="viewData.banner" alt="icon" />
+              <img class="w-full h-28" :src="viewData.banner" alt="icon" />
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
-          <div class="w-full flex">
-            <div class="w-1/2 font-semibold text-sm">Description</div>
-            <div class="w-1/2 text-sm">
+        
+        <div class="w-full px-4 py-4 border border-gray-200">
+          <div class="w-full">
+            <div class="font-semibold text-sm">Description</div>
+            <div class="text-sm">
               {{ viewData.description }}
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
-          <div class="w-full flex">
-            <div class="w-1/2 font-semibold text-sm">images</div>
-            <div class="w-1/2 text-sm">
-              {{ viewData.images }}
-            </div>
-          </div>
-        </div>
-        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
-          <div class="w-full flex">
-            <div class="w-1/2 font-semibold text-sm">Locations</div>
-            <div class="w-1/2 text-sm">
+        <div class="w-full px-4 py-4 border border-gray-200">
+          <div class="w-full">
+            <div class="font-semibold text-sm">Locations</div>
+            <div class="text-sm flex flex-wrap">
               <div
                 v-for="(item, index) in viewData.locations"
                 :key="index"
-                class="w-full"
+                class=""
               >
                 <span class="inline-block px-2 py-1 m-1 bg-gray-200">{{
                   item.title
@@ -178,21 +185,29 @@
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
-          <div class="w-full flex">
-            <div class="w-1/2 font-semibold text-sm">Thing Will Love</div>
-            <div class="w-1/2 text-sm">
-              <div
-                v-for="(item, index) in viewData.thing_will_love"
-                :key="index"
-                class="w-full"
-              >
-                <span class="inline-block px-2 py-1 m-1 bg-gray-200">{{ item }}</span>
-              </div>
+        <div class="w-full px-4 py-4 border border-gray-200">
+          <div class="w-full">
+            <div class="font-semibold text-sm">images</div>
+            <!-- <div class="w-1/2 text-sm">
+              {{ viewData.images }}
+            </div> -->
+            <div class="w-full text-sm">
+              <ul class="flex flex-wrap justify-between items-center">
+                  <li class="md:w-1/6 w-full p-1"  v-for="(item, index) in viewData.images" :key="index">
+                    <div>
+                      <img class="w-full h-28" :src="item.url" alt="">
+                      <!-- <p @click="removeQurbaniImage(item.id)" class="w-full text-sm bg-red-500 text-white text-center cursor-pointer">Remove</p> -->
+                    </div>
+                    
+                  </li>
+                  <!-- <span @click="selectImage" class="ml-2  w-12 h-12 flex justify-center items-center rounded-full cursor-pointer">
+                     <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
+                  </span> -->
+                </ul>
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
+        <div class="w-full md:w-1/2 px-4 py-4 border border-gray-200">
           <div class="w-full">
             <div class="font-semibold text-sm">Source</div>
             <div class="text-sm">
@@ -206,7 +221,7 @@
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
+        <div class="w-full md:w-1/2 px-4 py-4 border border-gray-200">
           <div class="w-full">
             <div class="font-semibold text-sm">Destination</div>
             <div class="text-sm">

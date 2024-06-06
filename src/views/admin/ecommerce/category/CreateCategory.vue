@@ -4,136 +4,28 @@
           <Loader :isLoading="isLoading" />
         </div>
         <PageHeader  
-        title="Add Package">
+        title="Add Category">
             <template v-slot:body>
-                <router-link to="/admin/packages" class="flex items-center justify-center bg-kakaPrimary dark:text-black100 py-2.5 px-8 w-full rounded-sm bor">
+                <router-link to="/admin/ecommerce/categorys" class="flex items-center justify-center bg-kakaPrimary dark:text-black100 py-2.5 px-8 w-full rounded-sm bor">
                     {{ $t('message.back-to-list') }}
                 </router-link>
             </template>
         </PageHeader>
-        <div class="p-4 shadow-md bg-gray-50 dark:bg-secondary10 dark:text-white relative">
+        <div class="p-4 shadow-md bg-gray-50 dark:bg-secondary10 dark:text-white">
            
-            <form @submit.prevent="packagesSubmit">
+            <form @submit.prevent="categorySubmit">
                 <div class="flex flex-wrap">
                     <div class="w-full md:w-1/2 px-4 py-4">
                         <div class="flex items-center mb-2">
-                            <label class="block capitalize" for="name">Name</label>
+                            <label class="block capitalize" for="title">Title</label>
                             <img src="@/assets/images/star.svg" alt="image" class="w-2.5 ml-1">
                         </div>
-                        <input v-model="form.name" name="name" class="modal-input-style" placeholder="Name">
-                        <div class="text-red-500 mr-1">{{ getBackendError('name') }}</div>
-                        <div v-if="V1$.form.name.$errors[0]" class="text-red-500">{{ V1$.form.name.$errors[0].$message }}</div>
+                        <input v-model="form.title" name="title" class="modal-input-style" placeholder="Title">
+                        <div class="text-red-500 mr-1">{{ getBackendError('title') }}</div>
+                        <div v-if="V1$.form.title.$errors[0]" class="text-red-500">{{ V1$.form.title.$errors[0].$message }}</div>
                     </div>
-                     <div class="w-full md:w-1/2 px-4 py-4">
-                        <div class="flex items-center mb-2">
-                            <label class="block capitalize" for="source">Source</label>
-                            <img src="@/assets/images/star.svg" alt="image" class="w-2.5 ml-1">
-                        </div>
-                        <select v-model="form.source" name="source" class="modal-input-style">
-                            <option value="" selected disabled>Select source</option>
-                            <option  v-for="data in locationData" :key="data.id" :value="data.id">{{data.name}}</option>
-                        </select>
-                        <div class="text-red-500 mr-1">{{ getBackendError('source') }}</div>
-                        <div v-if="V1$.form.source.$errors[0]" class="text-red-500">{{ V1$.form.source.$errors[0].$message }}</div>
-                    </div>
-                     <div class="w-full md:w-1/2 px-4 py-4">
-                        <div class="flex items-center mb-2">
-                            <label class="block capitalize" for="destination">Destination</label>
-                            <img src="@/assets/images/star.svg" alt="image" class="w-2.5 ml-1">
-                        </div>
-                        <select v-model="form.destination" name="destination" class="modal-input-style">
-                            <option value="" selected disabled>Select destination</option>
-                            <option  v-for="data in locationData" :key="data.id" :value="data.id">{{data.name}}</option>
-                        </select>
-                        <div class="text-red-500 mr-1">{{ getBackendError('destination') }}</div>
-                        <div v-if="V1$.form.destination.$errors[0]" class="text-red-500">{{ V1$.form.destination.$errors[0].$message }}</div>
-                    </div>
-                    <div class="w-full md:w-1/2 px-4 py-4">
-                        <div class="flex items-center mb-2">
-                            <label class="block capitalize" for="duration">Duration</label>
-                            <img src="@/assets/images/star.svg" alt="image" class="w-2.5 ml-1">
-                        </div>
-                        <input v-model="form.duration" name="duration" class="modal-input-style" placeholder="duration">
-                        <div class="text-red-500 mr-1">{{ getBackendError('duration') }}</div>
-                        <div v-if="V1$.form.duration.$errors[0]" class="text-red-500">{{ V1$.form.duration.$errors[0].$message }}</div>
-                    </div>
-                    <div class="w-full md:w-1/2 px-4 py-4">
-                        <div class="flex items-center mb-2">
-                            <label class="block capitalize" for="days">days</label>
-                            <img src="@/assets/images/star.svg" alt="image" class="w-2.5 ml-1">
-                        </div>
-                        <input v-model="form.days" name="days" class="modal-input-style" placeholder="days">
-                        <div class="text-red-500 mr-1">{{ getBackendError('days') }}</div>
-                        <div v-if="V1$.form.days.$errors[0]" class="text-red-500">{{ V1$.form.days.$errors[0].$message }}</div>
-                    </div>
-                    <div class="w-full md:w-1/2 px-4 py-4">
-                        <div class="flex items-center mb-2">
-                            <label class="block capitalize" for="nights">nights</label>
-                            <img src="@/assets/images/star.svg" alt="image" class="w-2.5 ml-1">
-                        </div>
-                        <input v-model="form.nights" name="nights" class="modal-input-style" placeholder="nights">
-                        <div class="text-red-500 mr-1">{{ getBackendError('nights') }}</div>
-                        <div v-if="V1$.form.nights.$errors[0]" class="text-red-500">{{ V1$.form.nights.$errors[0].$message }}</div>
-                    </div>
-                    <div class="w-full md:w-1/2 px-4 py-4">
-                        <div class="flex items-center mb-2">
-                            <label class="block capitalize" for="persons">persons</label>
-                            <img src="@/assets/images/star.svg" alt="image" class="w-2.5 ml-1">
-                        </div>
-                        <input v-model="form.persons" name="persons" class="modal-input-style" placeholder="persons">
-                        <div class="text-red-500 mr-1">{{ getBackendError('persons') }}</div>
-                        <div v-if="V1$.form.persons.$errors[0]" class="text-red-500">{{ V1$.form.persons.$errors[0].$message }}</div>
-                    </div>
-                    <div class="w-full md:w-1/2 px-4 py-4">
-                        <div class="flex items-center mb-2">
-                            <label class="block capitalize" for="base_price">Base Price</label>
-                            <img src="@/assets/images/star.svg" alt="image" class="w-2.5 ml-1">
-                        </div>
-                        <input v-model="form.base_price" name="base_price" class="modal-input-style" placeholder="base price">
-                        <div class="text-red-500 mr-1">{{ getBackendError('base_price') }}</div>
-                        <div v-if="V1$.form.base_price.$errors[0]" class="text-red-500">{{ V1$.form.base_price.$errors[0].$message }}</div>
-                    </div>
-                    <div class="w-full md:w-1/2 px-4 py-4">
-                        <div class="flex items-center mb-2">
-                            <label class="block capitalize" for="discount_price">Discount Price</label>
-                            <img src="@/assets/images/star.svg" alt="image" class="w-2.5 ml-1">
-                        </div>
-                        <input v-model="form.discount_price" name="discount_price" class="modal-input-style" placeholder="discount price">
-                        <div class="text-red-500 mr-1">{{ getBackendError('discount_price') }}</div>
-                        <div v-if="V1$.form.discount_price.$errors[0]" class="text-red-500">{{ V1$.form.discount_price.$errors[0].$message }}</div>
-                    </div>
-                    <div class="w-full md:w-1/2 px-4 py-4">
-                        <div class="flex items-center mb-2">
-                            <label class="block capitalize" for="price">Price</label>
-                            <img src="@/assets/images/star.svg" alt="image" class="w-2.5 ml-1">
-                        </div>
-                        <input v-model="form.price" name="price" class="modal-input-style" placeholder="price">
-                        <div class="text-red-500 mr-1">{{ getBackendError('price') }}</div>
-                        <div v-if="V1$.form.price.$errors[0]" class="text-red-500">{{ V1$.form.price.$errors[0].$message }}</div>
-                    </div>
-                    <div class="w-full md:w-1/2 px-4 py-4">
-                        <div class="flex items-center mb-2">
-                            <label class="block capitalize" for="booking_amount">Booking Amount</label>
-                            <img src="@/assets/images/star.svg" alt="image" class="w-2.5 ml-1">
-                        </div>
-                        <input v-model="form.booking_amount" name="booking_amount" class="modal-input-style" placeholder="booking amount">
-                        <div class="text-red-500 mr-1">{{ getBackendError('booking_amount') }}</div>
-                        <div v-if="V1$.form.booking_amount.$errors[0]" class="text-red-500">{{ V1$.form.booking_amount.$errors[0].$message }}</div>
-                    </div>
+                     
                    
-                    <div class="w-full md:w-1/2 px-4 py-4">
-                        <div class="flex items-center mb-2">
-                            <label class="block capitalize" for="offer_applicable">Offer Applicable</label>
-                            <img src="@/assets/images/star.svg" alt="image" class="w-2.5 ml-1">
-                        </div>
-                        <select v-model="form.offer_applicable" name="offer_applicable" class="modal-input-style">
-                            <option value="" selected disabled>Select offer_applicable</option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                        <div class="text-red-500 mr-1">{{ getBackendError('offer_applicable') }}</div>
-                        <div v-if="V1$.form.offer_applicable.$errors[0]" class="text-red-500">{{ V1$.form.offer_applicable.$errors[0].$message }}</div>
-                    </div>
                     <div class="w-full md:w-1/2 px-4 py-4">
                         <div class="flex items-center mb-2">
                             <label class="block capitalize" for="icon">Icon</label>
@@ -181,15 +73,6 @@
                         <div class="text-red-500 mr-1">{{ getBackendError('banner') }}</div>
                         <div v-if="V1$.form.banner.$errors[0]" class="text-red-500">{{ V1$.form.banner.$errors[0].$message }}</div>
                     </div>
-
-                    <div class="w-full md:w-1/2 px-4 py-4">
-                        <div class="flex items-center mb-2">
-                            <label class="block capitalize" for="thing_will_love">Thing Will Love</label>
-                            <img src="@/assets/images/star.svg" alt="image" class="w-2.5 ml-1">
-                        </div>
-                        <input v-model="form.thing_will_love" name="thing_will_love" class="modal-input-style" placeholder="thing will love">
-                        <div class="text-red-500 mr-1">{{ getBackendError('thing_will_love') }}</div>
-                    </div>
                     <div class="w-full md:w-1/2 px-4 py-4">
                         <div class="flex items-center mb-2">
                             <label class="block capitalize" for="description">Description</label>
@@ -208,36 +91,9 @@
                     </div>
                 </div>
             </form>
-            <!-- <div v-if="imageModel" class="imageModel absolute top-0 left-0 w-full h-full z-90">
-                <div class="flex w-full h-full bg-black-op justify-center items-center">
-                    <div class="w-1/2 bg-white h-300px overflow-y-auto">
-                        <p @click="closeIcon" class="flex justify-end px-4 py-2">
-                            <span class=" cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                </svg>
-
-                            </span>
-                        </p>
-                        <div class="flex flex-wrap">
-                            <div v-for="(item, index) in tableData" :key="index" class="md:w-1/4 w-full">
-                               <div @click="iconUrl(item.url)" class="px-4 py-4">
-                                 <div>
-                                    <img class="h-full md:h-24 w-full" :src="item.url" alt="">
-                                </div>
-                                <p class="text-center">{{item.name}}</p>
-                               </div>
-                            </div>
-                        </div>
-                        <div class="px-4 py-4">
-                             <a href="/admin/images/upload" class="inline-block w-full px-4 py-4 text-center bg-kakaPrimary">Add More</a>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             <div v-if="imageModel" class="imageModel absolute top-0 left-0 w-full h-full z-90">
                 <div class="flex w-full h-full bg-black-op justify-center items-end md:items-center px-4 py-4">
-                    <div class="w-full md:w-1/2 bg-white h-420 overflow-y-auto">
+                    <div class="w-full md:w-1/2 bg-white h-full md:h-420 overflow-y-auto">
                         <div v-if="!addImage">
                             <p @click="closeIcon" class="flex justify-end px-4 py-2">
                             <span class=" cursor-pointer">
@@ -307,36 +163,10 @@
                     </div>
                 </div>
             </div>
-            <!-- <div v-if="bannerModel" class="absolute top-0 left-0 w-full h-full z-90">
-                <div class="flex w-full h-full bg-black-op justify-center items-center">
-                    <div class="w-1/2 bg-white h-300px overflow-y-auto">
-                    <p @click="closeBanner" class="flex justify-end px-4 py-2">
-                            <span class=" cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                </svg>
-
-                            </span>
-                        </p>
-                        <div class="flex flex-wrap">
-                            <div v-for="(item, index) in tableData" :key="index" class="md:w-1/4 w-full">
-                               <div @click="bannerUrl(item.url)" class="px-4 py-4">
-                                 <div>
-                                    <img class="h-full md:h-24 w-full" :src="item.url" alt="">
-                                </div>
-                                <p class="text-center">{{item.name}}</p>
-                               </div>
-                            </div>
-                        </div>
-                         <div class="px-4 py-4">
-                             <a href="/admin/images/upload" class="inline-block w-full px-4 py-4 text-center bg-kakaPrimary">Add More</a>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+            
             <div v-if="bannerModel" class="absolute top-0 left-0 w-full h-full z-90">
                 <div class="flex w-full h-full bg-black-op justify-center items-end md:items-center px-4 py-4">
-                    <div class="w-full md:w-1/2 bg-white h-420 overflow-y-auto">
+                    <div class="w-full md:w-1/2 bg-white h-full md:h-420 overflow-y-auto">
                         <div v-if="!addImage">
                             <p @click="closeBanner" class="flex justify-end px-4 py-2">
                             <span class=" cursor-pointer">
@@ -415,45 +245,27 @@
 
 import { defineComponent, ref, reactive, computed, Ref, onMounted, toRefs, onUnmounted } from 'vue'
 
-import ActionModalVue from '../../../components/list/ActionModal.vue';
-import PageHeader from '../../../components/list/PageHeader.vue';
-import PackageService from "../../../services/package";
-import { PackageCreateRequest } from '../../../types/package';
-import LocationService from "../../../services/location";
-import { LocationListRequest } from '../../../types/location';
-import ImageService from "../../../services/imageUpload";
-import { ListImageRequest } from "../../../types/imageupload";
-import { SaveImageRequest } from '../../../types/imageupload';
+import ActionModalVue from '../../../../components/list/ActionModal.vue';
+import PageHeader from '../../../../components/list/PageHeader.vue';
+import CategoryService from "../../../../services/category";
+import { CategoryCreateRequest } from '../../../../types/category';
+import ImageService from "../../../../services/imageUpload";
+import { ListImageRequest } from "../../../../types/imageupload";
+import { SaveImageRequest } from '../../../../types/imageupload';
 import { useVuelidate } from '@vuelidate/core'
 import { email, helpers, integer, maxLength, minLength, numeric, required, url } from '@vuelidate/validators'
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
-import Loader from '../../../components/comp/Loader.vue';
-import config from '../../../../../kaka-web/src/config';
+import Loader from '../../../../components/comp/Loader.vue';
+import config from '../../../../../../kaka-web/src/config';
 import axios from 'axios';
 
 
-let createpackage: PackageCreateRequest= {
-name: "",
-source: "",
-destination: "",
+let createcategory: CategoryCreateRequest= {
+title: "",
 description: "",
-duration: "",
-days: "",
-nights: "",
-persons: "",
-base_price: "",
-discount_price: "",
-price: "",
-booking_amount: "",
-offer_applicable: "",
 icon: "",
 banner: "",
-thing_will_love: "",
-}
-let listFilterData : LocationListRequest={
-        perPage:100000,
-        page:1,
 }
 let saveimage : SaveImageRequest={
         name:'',
@@ -474,8 +286,7 @@ export default defineComponent({
         const state = reactive(
             {
                 isLoading:true,
-                form:createpackage,
-                 filterForm:listFilterData,
+                form:createcategory,
                 tableData: <any>[],
                 locationData: <any>[],
                 backendErrors:<any>{},
@@ -494,52 +305,10 @@ export default defineComponent({
 
         const createRule = {
             form:{
-                name: {
+                title: {
                         required1: helpers.withMessage(`${t('message.required')}`, required),
-                    },
-                source: {
-                        required1: helpers.withMessage(`${t('message.required')}`, required),
-                        numeric: helpers.withMessage(t('message.number-is-required'), numeric),
-                    },
-                destination: {
-                        required1: helpers.withMessage(`${t('message.required')}`, required),
-                        numeric: helpers.withMessage(t('message.number-is-required'), numeric),
                     },
                 description: {
-                        required1: helpers.withMessage(`${t('message.required')}`, required),
-                    },
-                duration: {
-                        required1: helpers.withMessage(`${t('message.required')}`, required),
-                    },
-                days: {
-                        required1: helpers.withMessage(`${t('message.required')}`, required),
-                        numeric: helpers.withMessage(t('message.number-is-required'), numeric),
-                    },
-                nights: {
-                        required1: helpers.withMessage(`${t('message.required')}`, required),
-                        numeric: helpers.withMessage(t('message.number-is-required'), numeric),
-                    },
-                persons: {
-                        required1: helpers.withMessage(`${t('message.required')}`, required),
-                        numeric: helpers.withMessage(t('message.number-is-required'), numeric),
-                    },
-                base_price: {
-                        required1: helpers.withMessage(`${t('message.required')}`, required),
-                        numeric: helpers.withMessage(t('message.number-is-required'), numeric),
-                    },
-                discount_price: {
-                        required1: helpers.withMessage(`${t('message.required')}`, required),
-                        numeric: helpers.withMessage(t('message.number-is-required'), numeric),
-                    },
-                price: {
-                        required1: helpers.withMessage(`${t('message.required')}`, required),
-                        numeric: helpers.withMessage(t('message.number-is-required'), numeric),
-                    },
-                booking_amount: {
-                        required1: helpers.withMessage(`${t('message.required')}`, required),
-                        numeric: helpers.withMessage(t('message.number-is-required'), numeric),
-                    },
-                offer_applicable: {
                         required1: helpers.withMessage(`${t('message.required')}`, required),
                     },
                 icon: {
@@ -579,14 +348,14 @@ export default defineComponent({
         }
         
 
-        const packagesSubmit = () => {
+        const categorySubmit = () => {
             V1$?.value.$touch();
             if (V1$?.value.$invalid) {
                 return;
             }else{
-        new PackageService().CreatePackage(state.form).then((response:any)=>{
+        new CategoryService().CreateCategory(state.form).then((response:any)=>{
                 if(response !== undefined && response.data !== undefined){
-                    router.push({ path:"/admin/packages" })
+                    router.push({ path:"/admin/ecommerce/categorys" })
                 }
             }).catch((error)=>{
                 console.log("error",error)
@@ -692,7 +461,6 @@ function closeAddImage(){
 }
 const ImageList = ()=>{
     new ImageService().listOfImage().then((response:any)=>{
-      console.log("response",response)
         if(response !== undefined){
              state.tableData = response.data.data;
             
@@ -700,38 +468,16 @@ const ImageList = ()=>{
     }).catch((error)=>{});
 }
 
- const ListLocations = ()=>{
-            new LocationService().listOfLocation(state.filterForm).then((response:any)=>{
-                console.log("loc response",response)
-                if(response !== undefined){
-                    state.locationData = response.data.data
-                }
-            }).catch((error)=>{});
-        }
-
         const reset=()=>{
-            state.form.name = "",
-            state.form.source = "",
-            state.form.destination = "",
+            state.form.title = "",
             state.form.description = "",
-            state.form.duration = "",
-            state.form.days = "",
-            state.form.nights = "",
-            state.form.persons = "",
-            state.form.base_price = "",
-            state.form.discount_price = "",
-            state.form.price = "",
-            state.form.booking_amount = "",
-            state.form.offer_applicable = "",
             state.form.icon = "",
             state.form.banner = "",
-            state.form.thing_will_love = "",
             V1$.value.$reset();
         }
         
        
         onMounted(()=>{
-            ListLocations();
             ImageList();
             setTimeout(() => {
               state.isLoading = false  
@@ -743,8 +489,8 @@ const ImageList = ()=>{
 
 
         return {
-            ...toRefs(state),getBackendError, V1$, packagesSubmit, fileInput,reset,
-             center,zoom,selectImage,ImageList,iconUrl,selectBanner,bannerUrl,ListLocations,
+            ...toRefs(state),getBackendError, V1$, categorySubmit, fileInput,reset,
+             center,zoom,selectImage,ImageList,iconUrl,selectBanner,bannerUrl,
              closeIcon, closeBanner,addMore,closeAddImage,submitForm,V2$,getBackendError2,onFileChange
         }
     }

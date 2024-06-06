@@ -42,6 +42,16 @@ import QurbaniUpdate from "../views/admin/qurbani/QurbaniUpdate.vue";
 import QurbaniBookingList from "../views/admin/qurbani/QurbaniBookingList.vue";
 import QurbaniBookingView from "../views/admin/qurbani/QurbaniBookingView.vue";
 
+import CreateCategory from "../views/admin/ecommerce/category/CreateCategory.vue";
+import CategoryList from "../views/admin/ecommerce/category/CategoryList.vue";
+import CategoryView from "../views/admin/ecommerce/category/CategoryView.vue";
+import CategoryUpdate from "../views/admin/ecommerce/category/CategoryUpdate.vue";
+
+import CreateProduct from "../views/admin/ecommerce/product/CreateProduct.vue";
+import ProductList from "../views/admin/ecommerce/product/ProductList.vue";
+import ProductView from "../views/admin/ecommerce/product/ProductView.vue";
+import ProductUpdate from "../views/admin/ecommerce/product/ProductUpdate.vue";
+
 
 const routes: Array<RouteRecordRaw> = [
   // admin routes
@@ -76,6 +86,16 @@ const routes: Array<RouteRecordRaw> = [
       { path: "/admin/qurbani/:id/update", name: "qurbani-update", component: QurbaniUpdate, meta: { name: "qurbani" ,title:"update qurbani"} },
       { path: "/admin/qurbanis/booking", name: "qurbani-booking-list", component: QurbaniBookingList, meta: { name: "qurbanibooking" ,title:"List Qurbani Booking"} },
       { path: "/admin/qurbani/booking/:id/view", name: "qurbani-booking-view", component: QurbaniBookingView, meta: { name: "qurbani-booking" ,title:"view qurbani-booking"} },
+
+      { path: "/admin/ecommerce/category/create", name: "create-category", component: CreateCategory, meta: { name: "category" ,title:"Create category"} },
+      { path: "/admin/ecommerce/categorys", name: "category-list", component: CategoryList, meta: { name: "category" ,title:"List category"} },
+      { path: "/admin/ecommerce/category/:id/view", name: "category-view", component: CategoryView, meta: { name: "category" ,title:"view category"} },
+      { path: "/admin/ecommerce/category/:id/update", name: "category-update", component: CategoryUpdate, meta: { name: "category" ,title:"update category"} },
+
+      { path: "/admin/ecommerce/product/create", name: "create-product", component: CreateProduct, meta: { name: "product" ,title:"Create product"} },
+      { path: "/admin/ecommerce/products", name: "product-list", component: ProductList, meta: { name: "product" ,title:"List product"} },
+      { path: "/admin/ecommerce/product/:id/view", name: "product-view", component: ProductView, meta: { name: "product" ,title:"view product"} },
+      { path: "/admin/ecommerce/product/:id/update", name: "product-update", component: ProductUpdate, meta: { name: "product" ,title:"update product"} },
 
 
 

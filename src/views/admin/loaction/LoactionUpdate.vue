@@ -205,7 +205,7 @@ import { email, helpers, integer, maxLength, minLength, numeric, required } from
 import { useRouter,useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import Loader from '../../../components/comp/Loader.vue';
-import config from '../../../../src/config';
+import config from '../../../../../kaka-web/src/config';
 import { GoogleMap, Marker } from 'vue3-google-map';
 
 
