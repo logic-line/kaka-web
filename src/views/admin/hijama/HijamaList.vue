@@ -10,7 +10,7 @@
             @enter:searchInput="setNewTableData"
             @search="getListBySearch" 
             @resetSearch="resetSearchTerm"
-            title="Cab Booking List">
+            title="Hijama Lists">
             
         </PageHeader>
 
@@ -48,10 +48,13 @@
         </div>
         <TableCompo id="tableContainer"> 
             <template v-slot:header>
-                <table-title-column class="table-cell" name="Pickup" ></table-title-column>
-                <table-title-column class="table-cell" name="Drop"  ></table-title-column>
-                <table-title-column class="table-cell" name="Contact Number"  ></table-title-column>
-                <table-title-column class="table-cell" name="Status"  ></table-title-column>
+                <th class="lg:hidden"></th>
+                <table-title-column class="hidden lg:table-cell" name="Icon"  ></table-title-column>
+                <table-title-column class="hidden lg:table-cell" name="Title"  ></table-title-column>
+                <table-title-column class="hidden lg:table-cell" name="Base Price" ></table-title-column>
+                <table-title-column class="hidden lg:table-cell" name="Price" ></table-title-column>
+                <table-title-column class="hidden lg:table-cell" name="stock" ></table-title-column>
+                <table-title-column class="hidden lg:table-cell" name="Enabled"  ></table-title-column>
                 <th class="text-sm dark:text-secondary font-medium text-black100 cursor-pointer px-6 py-4">
                     <div class="flex items-center justify-end space-x-1.5">
                         <span>{{ $t('message.action') }}</span>
@@ -61,23 +64,21 @@
             
             <template v-slot:body>
                 <tr v-for="data in tableData" :key="data.id" class="border dark:bg-black100 bg-secondary10">
-                    <table-data-comp :data="data.pickup"></table-data-comp>
-                    <table-data-comp :data="data.drop"></table-data-comp>
-                    <table-data-comp :data="data.contact_number"></table-data-comp>
+                    <td class="px-3 sm:px-6 py-3">
+                        <div class="flex items-center space-x-3">
+                            <img class="w-10 h-10" :src="data.icon ? data.icon : 'https://islamicimages.in/wp-content/uploads/2023/02/Featured-image-of-Madina-Sharif_result.webp'" alt="">
+                        </div>
+                    </td>
+                    <table-data-comp :data="data.title"></table-data-comp>
+                    <table-data-comp :data="data.base_price"></table-data-comp>
+                    <table-data-comp :data="data.price"></table-data-comp>
+                    <table-data-comp :data="data.stock"></table-data-comp>
                     <td class="px-3 sm:px-6 py-3">
                         <div class="flex items-center justify-start space-x-3 dark:text-secondary text-black100 font-medium">
-                            <span class="border px-4 py-onehalf rounded-xs" 
-                                :class="data.status === 'PENDING' ? 'bg-yellow-500 text-white' 
-                                :data.status === 'PROCESSING' ? 'bg-blue-500 text-white' 
-                                :data.status === 'COMPLETED' ? 'bg-green-500 text-white' 
-                                :data.status === 'CANCELLED' ? 'bg-red-500 text-white' 
-                                :data.status === 'CREATED' ? 'bg-purple-500 text-white' 
-                                :' bg-gray-400 text-white'">
-                                {{data.status}}
-                                 <!-- {{data.status === 1?'PENDING':data.status === 2?'PROCESSING':data.status === 3?'COMPLETED':data.status === 4?'CANCELLED':data.status === 5?'CONFIRMED':'CREATED'}} -->
-                            </span>
+                            <span class="border px-4 py-1 rounded-xs" :class="data.enabled === false ? 'bg-red-500 text-white' : 'bg-kakaPrimary'">{{data.enabled === false?'Inactive':'Active'}}</span>
                         </div>
-                    </td>                    
+                    </td>
+                    
                     <td class="px-6 py-3">
                         <div class="flex justify-end">
                             <div class="relative">
@@ -89,12 +90,16 @@
                                 </button>
                                 <portal :to="data.id">
                                     <div :id="data.id" class="edit-drop z-30 fixed space-y-3 rounded shadow-lg p-4 w-max bg-white dark:bg-black100 text-base py-2">
-                                        <router-link :to="{name:'cab-view', params:{id:data.id} }" :data="data" class="flex items-center space-x-3">
+                                        <router-link :to="{name:'hijama-view', params:{id:data.id} }" :data="data" class="flex items-center space-x-3">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             </svg>
                                             <p>{{ $t('message.view') }}</p>
+                                        </router-link>
+                                        <router-link :to="{name:'hijama-update', params:{id:data.id} }" :data="data" class="flex items-center space-x-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"></path></svg>
+                                            <p>Edit</p>
                                         </router-link>
                                     </div>
                                 </portal>
@@ -120,18 +125,17 @@ import TableTitleColumn from '../../../components/list/TableTitleColumn.vue';
 import TableDataComp from '../../../components/list/TableDataComp.vue';
 import FilterModal from '../../../components/list/FilterModal.vue';
 import { useStore } from 'vuex';
-import CabService from "../../../services/cab";
-import { CabListRequest } from '../../../types/cab';
+import HijamaService from "../../../services/hijama";
+import { HijamaListRequest } from '../../../types/hijama';
 import 'vue3-toastify/dist/index.css';
 import { toastrMsg } from "../../../utils/toastr";
 import { routeGroupCheck } from "../../../utils/route-utils"
 import Loader from '../../../components/comp/Loader.vue';
 import TablePaginationLimit from '../../../components/list/TablePaginationLimit.vue';
 
-let listFilterData : CabListRequest={
+let listFilterData : HijamaListRequest={
         perPage:10,
         page:1,
-        status:''
 }
 
 export default defineComponent({
@@ -163,7 +167,7 @@ export default defineComponent({
 
 
         const setTableData = ()=>{
-            new CabService().listOfBookingCab(state.filterForm).then((response:any)=>{
+            new HijamaService().listOfHijama(state.filterForm).then((response:any)=>{
                 if(response !== undefined){
                     state.tableData = response.data.data
                     state.totalPage = response.data.totalPage
@@ -184,7 +188,10 @@ export default defineComponent({
             }
             setTableData
         })
-          
+          const toggleModal = () => {
+            console.log(showModal)
+            showModal.value = !showModal.value;
+    };
 
         onMounted(()=>{
             setTableData();
@@ -200,7 +207,7 @@ export default defineComponent({
 
         return {
             ...toRefs(state),setTableData,positionEditDrop,
-            actionModalID, toggleActionDropdown, actionButton,showModal,pagginationButtonClick
+            actionModalID, toggleActionDropdown, toggleModal, actionButton,showModal,pagginationButtonClick
             
         }
 

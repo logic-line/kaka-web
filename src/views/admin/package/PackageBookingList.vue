@@ -48,10 +48,10 @@
         </div>
         <TableCompo id="tableContainer"> 
             <template v-slot:header>
-                <table-title-column class="table-cell" name="Name"  ></table-title-column>
+                <table-title-column class="table-cell" name="Pickup Point"  ></table-title-column>
                 <table-title-column class="table-cell" name="Contact Number" ></table-title-column>
                 <table-title-column class="table-cell" name="Travel Date"  ></table-title-column>
-                <table-title-column class="table-cell" name="Pickup Point"  ></table-title-column>
+                <table-title-column class="table-cell" name="Status"  ></table-title-column>
                 <th class="text-sm dark:text-secondary font-medium text-black100 cursor-pointer px-6 py-4">
                     <div class="flex items-center justify-end space-x-1.5">
                         <span>{{ $t('message.action') }}</span>
@@ -61,10 +61,22 @@
             
             <template v-slot:body>
                 <tr v-for="data in tableData" :key="data.id" class="border dark:bg-black100 bg-secondary10">
-                    <table-data-comp :data="data.user_id"></table-data-comp>
+                    <table-data-comp :data="data.pickup_point"></table-data-comp>
                     <table-data-comp :data="data.contact_number"></table-data-comp>
                     <table-data-comp :data="data.travel_date"></table-data-comp>
-                    <table-data-comp :data="data.pickup_point"></table-data-comp>
+                     <td class="px-3 sm:px-6 py-3">
+                        <div class="flex items-center justify-start space-x-3 dark:text-secondary text-black100 font-medium">
+                            <span class="border px-4 py-onehalf rounded-xs" 
+                                :class="data.status === 1 ? 'bg-yellow-500 text-white' 
+                                :data.status === 2 ? 'bg-blue-500 text-white' 
+                                :data.status === 3 ? 'bg-green-500 text-white' 
+                                :data.status === 4 ? 'bg-red-500 text-white' 
+                                :data.status === 5 ? 'bg-purple-500 text-white' 
+                                :' bg-gray-400 text-white'">
+                                 {{data.status === 1?'PENDING':data.status === 2?'PROCESSING':data.status === 3?'COMPLETED':data.status === 4?'CANCELLED':data.status === 5?'CONFIRMED':'CREATED'}}
+                            </span>
+                        </div>
+                    </td>
                     
                     <td class="px-6 py-3">
                         <div class="flex justify-end">

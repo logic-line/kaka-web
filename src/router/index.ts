@@ -56,6 +56,11 @@ import CabBookingList from "../views/admin/cab/CabBookingList.vue";
 import CabView from "../views/admin/cab/CabView.vue";
 import CabUpdate from "../views/admin/cab/CabUpdate.vue";
 
+import HijamaCreate from "../views/admin/hijama/HijamaCreate.vue";
+import HijamaList from "../views/admin/hijama/HijamaList.vue";
+import HijamaView from "../views/admin/hijama/HijamaView.vue";
+import HijamaUpdate from "../views/admin/hijama/HijamaUpdate.vue";
+
 
 const routes: Array<RouteRecordRaw> = [
   // admin routes
@@ -104,6 +109,11 @@ const routes: Array<RouteRecordRaw> = [
       { path: "/admin/cab/booking", name: "cab-booking-list", component: CabBookingList, meta: { name: "cabbooking" ,title:"List Cab Booking"} },
       { path: "/admin/cab/:id/view", name: "cab-view", component: CabView, meta: { name: "cab",title:"view cab" } },
       { path: "/admin/cab/:id/update", name: "cab-update", component: CabUpdate, meta: { name: "cab",title:"update cab" } },
+
+      { path: "/admin/hijamas/create", name: "hijama-create", component: HijamaCreate, meta: { name: "hijama" ,title:"hijama create"} },
+      { path: "/admin/hijamas", name: "hijama-list", component: HijamaList, meta: { name: "hijama" ,title:"hijama"} },
+      { path: "/admin/hijama/:id/view", name: "hijama-view", component: HijamaView, meta: { name: "hijama",title:"view hijama" } },
+      { path: "/admin/hijama/:id/update", name: "hijama-update", component: HijamaUpdate, meta: { name: "hijama",title:"update hijama" } },
 
 
 

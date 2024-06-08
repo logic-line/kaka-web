@@ -199,7 +199,7 @@ export default class CabService {
   public ChangeStatus(payload: CabUpdateRequest): Promise<any> {
     const token = localStorage.getItem('token');
     var bookingid = payload.bookingId
-    const url = config.authUrl + "/package/booking/"+bookingid;
+    const url = config.authUrl + "/cab/booking/"+bookingid;
     console.log('status', payload.status)
     return axios.put(url,{
       status:payload.status,

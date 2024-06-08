@@ -1,32 +1,21 @@
 <template>
-    <div class="overflow-hidden px-6 py-4">
+    <div class="overflow-hidden px-6 py-4 relative">
         <div v-if="isLoading" class="h-[507px] pt-2 pr-3" >
           <Loader :isLoading="isLoading" />
         </div>
         <PageHeader  
-        title="Update Product">
+        title="Update Hijama">
             <template v-slot:body>
-                <router-link to="/admin/ecommerce/products" class="flex items-center justify-center bg-kakaPrimary dark:text-black100 py-2.5 px-8 w-full rounded-sm bor">
+                <router-link to="/admin/hijamas" class="flex items-center justify-center bg-kakaPrimary dark:text-black100 py-2.5 px-8 w-full rounded-sm bor">
                     {{ $t('message.back-to-list') }}
                 </router-link>
             </template>
         </PageHeader>
         <div class="p-4 shadow-md bg-gray-50 dark:bg-secondary10 dark:text-white">
            
-            <form @submit.prevent="productSubmit">
+            <form @submit.prevent="hijamaSubmit">
                 <div class="flex flex-wrap">
-                     <div class="w-full md:w-1/2 px-4 py-4">
-                        <div class="flex items-center mb-2">
-                            <label class="block capitalize" for="product_category_id">Category</label>
-                            <img src="@/assets/images/star.svg" alt="image" class="w-2.5 ml-1">
-                        </div>
-                        <select v-model="form.product_category_id" name="product_category_id" class="modal-input-style">
-                            <option value="" selected disabled>Select Category</option>
-                            <option  v-for="data in categoryData" :key="data.id" :value="data.id">{{data.title}}</option>
-                        </select>
-                        <div class="text-red-500 mr-1">{{ getBackendError('product_category_id') }}</div>
-                        <div v-if="V1$.form.product_category_id.$errors[0]" class="text-red-500">{{ V1$.form.product_category_id.$errors[0].$message }}</div>
-                    </div>
+                     
                     <div class="w-full md:w-1/2 px-4 py-4">
                         <div class="flex items-center mb-2">
                             <label class="block capitalize" for="title">Title</label>
@@ -306,27 +295,24 @@
 
 import { defineComponent, ref, reactive, computed, Ref, onMounted, toRefs, onUnmounted } from 'vue'
 
-import ActionModalVue from '../../../../components/list/ActionModal.vue';
-import PageHeader from '../../../../components/list/PageHeader.vue';
-import ProductService from "../../../../services/product";
-import { ProductUpdateRequest } from '../../../../types/product';
-import CategoryService from "../../../../services/category";
-import { CategoryListRequest } from '../../../../types/category';
-import ImageService from "../../../../services/imageUpload";
-import { ListImageRequest } from "../../../../types/imageupload";
-import { SaveImageRequest } from '../../../../types/imageupload';
+import ActionModalVue from '../../../components/list/ActionModal.vue';
+import PageHeader from '../../../components/list/PageHeader.vue';
+import HijamaService from "../../../services/hijama";
+import { HijamaUpdateRequest } from '../../../types/hijama';
+import ImageService from "../../../services/imageUpload";
+import { ListImageRequest } from "../../../types/imageupload";
+import { SaveImageRequest } from '../../../types/imageupload';
 import { useVuelidate } from '@vuelidate/core'
 import { email, helpers, integer, maxLength, minLength, numeric, required, url } from '@vuelidate/validators'
 import { useRouter,useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
-import Loader from '../../../../components/comp/Loader.vue';
-import config from '../../../../config';
+import Loader from '../../../components/comp/Loader.vue';
+import config from '../../../config';
 import axios from 'axios';
 
 
-let updateproduct: ProductUpdateRequest= {
+let updateHijama: HijamaUpdateRequest= {
         id : "",
-        product_category_id: "",
         title: "",
         description: "",
         icon: "",
@@ -341,10 +327,6 @@ let saveimage : SaveImageRequest={
         name:'',
         url:'',
 }
-let listFilterData : CategoryListRequest={
-        perPage:10,
-        page:1,
-}
 
 export default defineComponent({
     components: {ActionModalVue, PageHeader, Loader },
@@ -358,8 +340,7 @@ export default defineComponent({
         const state = reactive(
             {
                 isLoading:true,
-                form:updateproduct,
-                filterForm:listFilterData,
+                form:updateHijama,
                 categoryData: <any>[],
                 tableData: <any>[],
                 backendErrors:<any>{},
@@ -379,9 +360,6 @@ export default defineComponent({
         const createRule = {
             form:{
                 title: {
-                        required1: helpers.withMessage(`${t('message.required')}`, required),
-                    },
-                product_category_id: {
                         required1: helpers.withMessage(`${t('message.required')}`, required),
                     },
                 description: {
@@ -439,7 +417,7 @@ export default defineComponent({
         }
         
 
-        const productSubmit = () => {
+        const hijamaSubmit = () => {
             V1$?.value.$touch();
             if (V1$?.value.$invalid) {
                 return;
@@ -447,9 +425,9 @@ export default defineComponent({
             let id = route.params.id;
             let ID =id.toString()
             state.form.id = ID
-        new ProductService().UpdateProduct(state.form).then((response:any)=>{
+        new HijamaService().UpdateHijama(state.form).then((response:any)=>{
                 if(response !== undefined && response.data!== undefined){
-                    router.push({ path:"/admin/ecommerce/products" })
+                    router.push({ path:"/admin/hijamas" })
                 }
             }).catch((error: any)=>{
                 console.log("error",error)
@@ -561,20 +539,12 @@ const ImageList = ()=>{
         }
     }).catch((error)=>{});
 }
- const listCategory = ()=>{
-            new CategoryService().listOfCategory(state.filterForm).then((response:any)=>{
-                if(response !== undefined){
-                    state.categoryData = response.data.data
-                    
-                }
-            }).catch((error)=>{});
-        }
-const getProductView = () => {
+ 
+const getHijamaView = () => {
         let id = route.params.id;
         let ID =id.toString()
-      new ProductService().GetProductView(ID).then((response: any) => {
+      new HijamaService().GetHijamaView(ID).then((response: any) => {
           if (response !== undefined && response.data!== undefined) {
-            state.form.product_category_id =response.data.product_category_id
             state.form.title =response.data.title
             state.form.description = response.data.description
             state.form.icon = response.data.icon
@@ -604,9 +574,8 @@ const getProductView = () => {
         
        
         onMounted(()=>{
-            getProductView();
+            getHijamaView();
             ImageList();
-            listCategory();
             setTimeout(() => {
               state.isLoading = false  
             }, 1000);
@@ -617,7 +586,7 @@ const getProductView = () => {
 
 
         return {
-            ...toRefs(state),getBackendError, V1$, productSubmit, fileInput,reset,selectImage,ImageList,iconUrl,selectBanner,bannerUrl,
+            ...toRefs(state),getBackendError, V1$, hijamaSubmit, fileInput,reset,selectImage,ImageList,iconUrl,selectBanner,bannerUrl,
              closeIcon, closeBanner,addMore,closeAddImage,submitForm,V2$,getBackendError2,onFileChange
         }
     }
