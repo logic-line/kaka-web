@@ -188,6 +188,15 @@
                 </transition>
               </li> -->
               <li>
+                 <router-link to="/home" class="mt-3 sidebar-route capitalize group w-full flex items-center px-4 py-3 cursor-pointer relative">
+                       <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="0.4" d="M16.0756 2H19.4616C20.8639 2 22.0001 3.14585 22.0001 4.55996V7.97452C22.0001 9.38864 20.8639 10.5345 19.4616 10.5345H16.0756C14.6734 10.5345 13.5371 9.38864 13.5371 7.97452V4.55996C13.5371 3.14585 14.6734 2 16.0756 2Z" fill="currentColor"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.53852 2H7.92449C9.32676 2 10.463 3.14585 10.463 4.55996V7.97452C10.463 9.38864 9.32676 10.5345 7.92449 10.5345H4.53852C3.13626 10.5345 2 9.38864 2 7.97452V4.55996C2 3.14585 3.13626 2 4.53852 2ZM4.53852 13.4655H7.92449C9.32676 13.4655 10.463 14.6114 10.463 16.0255V19.44C10.463 20.8532 9.32676 22 7.92449 22H4.53852C3.13626 22 2 20.8532 2 19.44V16.0255C2 14.6114 3.13626 13.4655 4.53852 13.4655ZM19.4615 13.4655H16.0755C14.6732 13.4655 13.537 14.6114 13.537 16.0255V19.44C13.537 20.8532 14.6732 22 16.0755 22H19.4615C20.8637 22 22 20.8532 22 19.44V16.0255C22 14.6114 20.8637 13.4655 19.4615 13.4655Z" fill="currentColor"></path>
+                            </svg>
+                      <p class="pl-2">Dashboard</p>  
+                    </router-link>
+              </li>
+              <li>
                 <div @click="openSidebarDrop('location')" class="mt-2 capitalize group w-full flex items-center px-4 py-3.5 pr-12 cursor-pointer relative">
                   <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path class="fa-secondary" opacity=".4" d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 112a80 80 0 1 1 0 160 80 80 0 1 1 0-160z"/><path class="fa-primary" d="M192 144a48 48 0 1 0 0 96 48 48 0 1 0 0-96z"/></svg>
 
@@ -389,6 +398,38 @@
                           <p class="pl-2">List Package Booking</p>  
                         </router-link>
                       </li>
+                     
+                    </ul>
+                </transition>
+  
+              </li>
+              <li>
+                <div @click="openSidebarDrop('hijama')" class="mt-2 capitalize group w-full flex items-center px-4 py-3.5 pr-12 cursor-pointer relative">
+                 <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path class="fa-secondary" opacity=".4" d="M8.6 10.2C14.6 3.7 23.1 0 32 0H352c8.9 0 17.4 3.7 23.4 10.2s9.1 15.2 8.5 24.1L355.1 437.7c-3 41.9-37.8 74.3-79.8 74.3H108.7c-42 0-76.8-32.4-79.8-74.3L.1 34.3c-.6-8.9 2.4-17.6 8.5-24.1zM66.4 64L92.7 433.1c.6 8.4 7.6 14.9 16 14.9H275.3c8.4 0 15.4-6.5 16-14.9L317.6 64H66.4z"/><path class="fa-primary" d=""/></svg>
+                  <p class="pl-2">{{ $t('hijama') }}</p>
+                  <div class="group-hover:block absolute left-0 w-1 h-full bg-kakaPrimary rounded-r-lg" :class="sidebarL1Menu=='hijama' ? 'block': 'hidden'"></div>
+                  
+                  <svg class="w-4 h-4 absolute right-6 duration-300" :class="sidebarL1Menu=='hijama'? 'rotate-180':''" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                  </svg>    
+                </div>
+  
+                <transition name="menuAccordion"
+                    @enter="enter"
+                    @after-enter="afterEnter"
+                    @leave="leave">
+                    <ul v-show="sidebarL1Menu=='hijama'" class="pl-6 overflow-hidden">
+                       <li>
+                        <router-link to="/admin/hijamas/create" class="mt-3 sidebar-route capitalize group w-full flex items-center px-4 py-3 cursor-pointer relative">
+                          <p class="pl-2">{{ $t('create hijama') }}</p>  
+                        </router-link>
+                      </li>
+                      <li>
+                        <router-link to="/admin/hijamas" class="mt-3 sidebar-route capitalize group w-full flex items-center px-4 py-3 cursor-pointer relative">
+                          <p class="pl-2">{{ $t('list hijama') }}</p>  
+                        </router-link>
+                      </li>
+                      
                      
                     </ul>
                 </transition>

@@ -198,8 +198,6 @@ export default defineComponent({
           if (response !== undefined) {
             state.viewData = response.data;
             state.userData = response.data.user;
-            // state.qurbaniData = response.data.qurbani;
-            // state.animalTypeData = response.data.qurbani_animal_type;
           }
         })
         .catch((error) => {});
