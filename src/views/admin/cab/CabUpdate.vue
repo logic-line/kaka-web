@@ -422,7 +422,6 @@ export default defineComponent({
                     router.push({ path:"/admin/packages" })
                 }
             }).catch((error)=>{
-                console.log("error",error)
             });
     }
 };
@@ -451,7 +450,6 @@ function bannerUrl(url:any){
 }
 const ImageList = ()=>{
     new ImageService().listOfImage().then((response:any)=>{
-      console.log("response",response)
         if(response !== undefined){
              state.tableData = response.data.data;
             
@@ -471,7 +469,6 @@ const getPackageView = () => {
         let id = route.params.id;
         let ID =id.toString()
       new PackageService().GetPackageView(ID).then((response: any) => {
-          console.log("response", response);
           if (response !== undefined && response.data!== undefined) {
             state.form.name =response.data.name
             state.form.source = response.data.source

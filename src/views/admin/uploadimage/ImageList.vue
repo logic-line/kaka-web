@@ -77,7 +77,6 @@ export default defineComponent({
 
         const setTableData = ()=>{
             new ImageService().listOfImage().then((response:any)=>{
-              console.log("response",response)
                 if(response !== undefined){
                      state.tableData = response.data.data;
                     

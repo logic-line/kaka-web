@@ -278,7 +278,6 @@ export default defineComponent({
         .RemovePackage(ID)
         .then((response: any) => {
           if (response !== undefined) {
-            console.log("delete succesfully");
             router.push({ path: "/admin/packages" });
           }
         })

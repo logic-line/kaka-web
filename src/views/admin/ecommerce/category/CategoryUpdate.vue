@@ -90,6 +90,9 @@
                         <button class="px-10 rounded-sm py-2.5 bg-kakaPrimary text-white dark:text-black100" type="submit">{{ $t('message.submit') }}</button>     
                     </div>
                 </div>
+                <div class="error py-4">
+                    <p class="text-xs text-red-500">{{backerr}}</p>
+                </div>
             </form>
             <div v-if="imageModel" class="imageModel absolute top-0 left-0 w-full h-full z-90">
                 <div class="flex w-full h-full bg-black-op justify-center items-end md:items-center px-4 py-4">
@@ -286,6 +289,7 @@ export default defineComponent({
             {
                 isLoading:true,
                 form:updatecategory,
+                backerr: "",
                 tableData: <any>[],
                 locationData: <any>[],
                 backendErrors:<any>{},
@@ -359,9 +363,10 @@ export default defineComponent({
                 if(response !== undefined && response.data!== undefined){
                     router.push({ path:"/admin/ecommerce/categorys" })
                 }
-            }).catch((error: any)=>{
-                console.log("error",error)
-            });
+                if(response.error==true){
+                    state.backerr = response.message
+                }
+            }).catch((error: any)=>{});
     }
 };
 
@@ -393,9 +398,7 @@ export default defineComponent({
         }
       })
       .then((response: any) => {
-        console.log("Upload successful! 1", response.data);
         state.saveimageform.url = response.data.data
-        
       })
       .catch((error: any) => {
         console.error("Error:", error);
@@ -473,7 +476,6 @@ const getCategoryView = () => {
         let id = route.params.id;
         let ID =id.toString()
       new CategoryService().GetCategoryView(ID).then((response: any) => {
-          console.log("response", response);
           if (response !== undefined && response.data!== undefined) {
             state.form.title =response.data.title
             state.form.description = response.data.description

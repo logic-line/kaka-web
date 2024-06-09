@@ -127,7 +127,6 @@ export default defineComponent({
             let ID =id.toString()
             new LocationService().RemoveLocation(ID).then((response:any)=>{
                 if(response !== undefined){
-                    console.log("delete succesfully")
                     router.push({ path:"/admin/locations" })
                 }
             }).catch((error)=>{});

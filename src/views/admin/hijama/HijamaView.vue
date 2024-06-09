@@ -408,7 +408,6 @@ export default defineComponent({
         .RemoveHijama(ID)
         .then((response: any) => {
           if (response !== undefined) {
-            console.log("delete succesfully");
             router.push({ path: "/admin/hijamas" });
           }
         })
@@ -433,7 +432,6 @@ export default defineComponent({
             state.delHijama.imageId = imageID
             new HijamaService().RemoveHijamaImage(state.delHijama).then((response:any)=>{
                 if(response !== undefined){
-                    console.log("delete succesfully")
                    getHijamaView();
                 }
             }).catch((error)=>{});
@@ -517,7 +515,6 @@ export default defineComponent({
               let id = route.params.id;
                let ID =id.toString()
               const url = config.authUrl+"/hijama/"+ID+"/image";
-              console.log("url",url)
                 const token = localStorage.getItem('token');
                 const params = {
                     url: state.hijamaimageform.url,

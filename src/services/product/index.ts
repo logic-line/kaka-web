@@ -98,7 +98,6 @@ export default class ProductService {
       const params = {
         packageId: payload,
       };
-      console.log("config.authUrl",config.authUrl)
       const url = config.authUrl + "/product/"+payload;
       const token = localStorage.getItem('token');
       const headers: AxiosRequestConfig['headers'] = {

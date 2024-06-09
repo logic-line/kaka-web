@@ -181,33 +181,7 @@ export default class UserService {
   }
 
   public CreateUser(payload: CreateUserRequest) {
-    // const url = config.usermgmGatewayUrl + "/usermgm/v1/user/create";
-    // const method = "POST";
-    // return FetchData(url, method, false, false,{
-    //   name: payload.name,
-    //   email: payload.email,
-    //   mobile_code: payload.mobilecode,
-    //   mobile: payload.mobilenumber,
-    //   password: payload.password,
-    //   photo_url:payload.photourl
-    // }).then((result) => {
-    //   if (result.error) {
-    //     if(result.error.message == 'NetworkError when attempting to fetch resource.'){
-    //       store.dispatch('setUniqueErrorStatus', true);
-    //       store.dispatch('setError', 'Faild To Create User');
-    //     }else{
-    //       throw result.error.message;
-    //     }
-    //   } else {
-    //     if (result.data) {
-    //       return result.data;
-    //     }
-    //   }
-    // });
-    // sohan
-    // const url = config.authUrl + "/auth/signup";
     const url = "http://192.168.31.115:8086/api" + "/auth/signup";
-    // console.log("url",url)
     return axios.post(url,{
       name: payload.name,
       email: payload.email,
@@ -220,13 +194,10 @@ export default class UserService {
      }) .then(function (response) {
     })
     .catch(function (error) {
-      // handle error
       console.log(error);
     })
     .finally(function () {
-      // always executed
     });
-    // sohan
   }
 
   public LoginUser(payload: LoginUserRequest) {

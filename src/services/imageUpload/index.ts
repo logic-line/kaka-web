@@ -8,9 +8,6 @@ export default class ImageService {
 
   private genericErrorMessage =
     "Connection to the network failed. Please contact our support team example@example.com.";
-
-    
-
     public listOfImage(){
       return new Promise((resolve, reject) => {
         const url = config.authUrl + "/image";
@@ -31,7 +28,6 @@ export default class ImageService {
       });
     }
     public saveImage(payload: SaveImageRequest): Promise<any> {
-      console.log("payload",payload)
       return new Promise((resolve, reject) => {
         const token = localStorage.getItem('token');
         const params = {
@@ -46,7 +42,6 @@ export default class ImageService {
         };
         axios.post(url, { params, headers},)
           .then(function (response) {
-            console.log("save res",response)
             resolve(response.data); 
           })
           .catch(function (error) {

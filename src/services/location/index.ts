@@ -27,7 +27,6 @@ export default class LocationService {
         "Content-Type": "multipart/form-data"
       }
      }) .then(function (response) {
-      console.log("loc res",response)
       return(response.data);
     })
     .catch(function (error) {
@@ -39,8 +38,6 @@ export default class LocationService {
   public UpdateLocation(payload: UpdateLocation): Promise<any> {
     const token = localStorage.getItem('token');
     var ID = payload.id
-
-    console.log("id",ID)
     const url = config.authUrl + "/location/"+ID;
     return axios.put(url,{
       name:payload.name,
@@ -57,7 +54,6 @@ export default class LocationService {
         'Content-Type': 'application/json',
       }
      }) .then(function (response) {
-      console.log("loc res",response)
       return(response.data);
     })
     .catch(function (error) {
@@ -69,11 +65,9 @@ export default class LocationService {
   
   public GetLocationView(payload: string) {
     return new Promise((resolve, reject) => {
-      console.log("payload",payload)
       const params = {
         id: payload,
       };
-      console.log("xyz",payload)
       const url = config.authUrl + "/location/"+payload;
       const token = localStorage.getItem('token');
       const headers: AxiosRequestConfig['headers'] = {
@@ -137,28 +131,6 @@ export default class LocationService {
         });
     });
    }
-
-  // public removeCarImage(payload: string) {
-  //   return new Promise((resolve, reject) => {
-  //     const params = {
-  //       carID: payload,
-  //     };
-  //     const url = config.authUrl + "/admin/image/"+payload+"/delete";
-  //     const token = localStorage.getItem('token');
-  //     const headers: AxiosRequestConfig['headers'] = {
-  //       'Authorization': 'Bearer ' + token ,
-  //       'Content-Type': 'application/json',
-  //     };
-  //     axios.get(url, { params, headers},)
-  //       .then(function (response) {
-  //         console.log(response)
-  //         resolve(response.data);
-  //       })
-  //       .catch(function (error) {
-  //         reject(error);
-  //       });
-  //   });
-  //  }
 
 }
 

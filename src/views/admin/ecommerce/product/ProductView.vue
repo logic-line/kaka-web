@@ -422,7 +422,6 @@ export default defineComponent({
         .RemoveProduct(ID)
         .then((response: any) => {
           if (response !== undefined) {
-            console.log("delete succesfully");
             router.push({ path: "/admin/ecommerce/products" });
           }
         })
@@ -448,7 +447,6 @@ export default defineComponent({
             state.delProduct.imageId = imageID
             new ProductService().RemoveProductImage(state.delProduct).then((response:any)=>{
                 if(response !== undefined){
-                    console.log("delete succesfully")
                    getProductView();
                 }
             }).catch((error)=>{});
@@ -532,7 +530,6 @@ export default defineComponent({
               let id = route.params.id;
                let ID =id.toString()
               const url = config.authUrl+"/product/"+ID+"/image";
-              console.log("url",url)
                 const token = localStorage.getItem('token');
                 const params = {
                     url: state.productimageform.url,
