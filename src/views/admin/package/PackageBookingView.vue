@@ -383,7 +383,6 @@ export default defineComponent({
         .GetPackageBookingView(state.packageBookingID)
         .then((response: any) => {
           if (response !== undefined) {
-            console.log("resp",response.data)
             state.viewData = response.data;
             state.paymentData = response.data.payment;
             state.packageData = response.data.package;

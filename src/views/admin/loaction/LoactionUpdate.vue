@@ -131,6 +131,9 @@
                         <button class="px-10 rounded-sm py-2.5 bg-kakaPrimary text-white dark:text-black100" type="submit">{{ $t('message.submit') }}</button>     
                     </div>
                 </div>
+                 <div class="error py-4">
+                    <p class="text-xs text-red-500">{{backerr}}</p>
+                </div>
             </form>
             <div v-if="imageModel" class="imageModel absolute top-0 left-0 w-full h-full z-90">
                 <div class="flex w-full h-full bg-black-op justify-center items-center">
@@ -245,6 +248,7 @@ export default defineComponent({
                 },
                 tableData: <any>[],
                 backendErrors:<any>{},
+                backerr: "",
                 phoneValidate:false,
                 authModalOpen:false,
                 imageModel: false,
@@ -299,9 +303,10 @@ export default defineComponent({
                 if(response !== undefined && response.data !== undefined){
                     router.push({ path:"/admin/locations" })
                 }
-            }).catch((error)=>{
-                console.log("error",error)
-            });
+                if(response.error==true){
+                    state.backerr = response.message
+                }
+            }).catch((error)=>{});
     }
 };
 

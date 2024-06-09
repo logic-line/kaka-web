@@ -187,7 +187,6 @@ export default defineComponent({
         .RemoveCategory(ID)
         .then((response: any) => {
           if (response !== undefined) {
-            console.log("delete succesfully");
             router.push({ path: "/admin/ecommerce/categorys" });
           }
         })
@@ -201,9 +200,6 @@ export default defineComponent({
           if (response !== undefined) {
             state.viewData = response.data;
             state.productsData = response.data.products;
-
-            console.log("response.data 12334",response.data)
-            console.log("response.data.products",response.data.products)
           }
         })
         .catch((error) => {});

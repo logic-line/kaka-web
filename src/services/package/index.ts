@@ -75,7 +75,6 @@ export default class PackageService {
         return(response.data);
       })
       .catch(function (error) {
-        console.log(error);
       })
       .finally(function () {
       });
@@ -100,10 +99,10 @@ export default class PackageService {
       axios.get(url, { params, headers},)
         .then(function (response) {
           console.log(response)
-          resolve(response.data); // Resolve the promise with the response data
+          resolve(response.data); 
         })
         .catch(function (error) {
-          reject(error); // Reject the promise with the error
+          reject(error);
         });
     });
   }
@@ -113,7 +112,6 @@ export default class PackageService {
       const params = {
         packageId: payload,
       };
-      console.log("config.authUrl",config.authUrl)
       const url = config.authUrl + "/package/"+payload+"";
       const token = localStorage.getItem('token');
       const headers: AxiosRequestConfig['headers'] = {
@@ -189,20 +187,17 @@ export default class PackageService {
       axios.get(url, { params, headers},)
         .then(function (response) {
           console.log(response)
-          resolve(response.data); // Resolve the promise with the response data
+          resolve(response.data);
         })
         .catch(function (error) {
-          reject(error); // Reject the promise with the error
+          reject(error);
         });
     });
   }
   public ChangeStatus(payload: BookingStatusUpdateRequest): Promise<any> {
     const token = localStorage.getItem('token');
-    console.log("sohan",payload.bookingId)
-    console.log("sohan",payload.status)
     var bookingid = payload.bookingId
     const url = config.authUrl + "/package/booking/"+bookingid;
-    console.log("url 123",url)
     return axios.put(url,{
       status:payload.status,
       bookingId:payload.bookingId,
@@ -213,11 +208,9 @@ export default class PackageService {
         'Content-Type': 'application/json',
       }
      }) .then(function (response) {
-      console.log("resssss",response)
       return(response.data);
     })
     .catch(function (error) {
-      console.log("sohan error",error);
     })
     .finally(function () {
     });

@@ -108,7 +108,6 @@ export default defineComponent({
         }
       })
       .then((response: any) => {
-        console.log("Upload successful! 1", response.data);
         state.saveimageform.url = response.data.data
         
       })

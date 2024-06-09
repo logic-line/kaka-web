@@ -23,7 +23,6 @@ export default class QurbaniService {
         "Content-Type": "multipart/form-data"
       }
      }) .then(function (response) {
-      console.log("loc res",response)
       return(response.data);
     })
     .catch(function (error) {
@@ -49,7 +48,6 @@ export default class QurbaniService {
         'Content-Type': 'application/json',
       }
      }) .then(function (response) {
-      console.log("loc res",response)
       return(response.data);
     })
     .catch(function (error) {
@@ -62,7 +60,6 @@ export default class QurbaniService {
     const token = localStorage.getItem('token');
     var qurbaniID = payload.qurbaniId
     var typeID = payload.typeID
-    console.log("upd payload",payload)
     const url = config.authUrl + "/qurbani/"+qurbaniID+"/type/"+typeID;
     return axios.put(url,{
       type:payload.type,
@@ -85,11 +82,8 @@ export default class QurbaniService {
   }
   public ChangeStatus(payload: BookingStatusUpdateRequest): Promise<any> {
     const token = localStorage.getItem('token');
-    console.log("sohan",payload.bookingId)
-    console.log("sohan",payload.status)
     var bookingid = payload.bookingId
     const url = config.authUrl + "/qurbani/booking/"+bookingid;
-    console.log("url 123",url)
     return axios.put(url,{
       status:payload.status,
       bookingId:payload.bookingId,
@@ -100,11 +94,9 @@ export default class QurbaniService {
         'Content-Type': 'application/json',
       }
      }) .then(function (response) {
-      console.log("resssss",response)
       return(response.data);
     })
     .catch(function (error) {
-      console.log("sohan error",error);
     })
     .finally(function () {
     });
@@ -112,7 +104,6 @@ export default class QurbaniService {
 
   public GetQurbaniView(payload: string) {
     return new Promise((resolve, reject) => {
-      console.log("payload",payload)
       const params = {
         id: payload,
       };
@@ -135,7 +126,6 @@ export default class QurbaniService {
    }
   public GetQurbaniBookingView(payload: string) {
     return new Promise((resolve, reject) => {
-      console.log("payload",payload)
       const params = {
         id: payload,
       };
@@ -158,7 +148,6 @@ export default class QurbaniService {
    }
   public GetQurbaniTypeView(payload: string) {
     return new Promise((resolve, reject) => {
-      console.log("payload",payload)
       const params = {
         id: payload,
       };
@@ -171,7 +160,6 @@ export default class QurbaniService {
       };
       axios.get(url, { params, headers},)
         .then(function (response) {
-          console.log("4444",response)
           resolve(response.data);
         })
         .catch(function (error) {

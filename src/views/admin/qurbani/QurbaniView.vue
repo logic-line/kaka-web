@@ -567,7 +567,6 @@ export default defineComponent({
               let id = route.params.id;
                let ID =id.toString()
               const url = config.authUrl+"/qurbani/"+ID+"/image";
-              console.log("url",url)
                 const token = localStorage.getItem('token');
                 const params = {
                     url: state.qurbaniimageform.url,
@@ -602,7 +601,6 @@ export default defineComponent({
             state.delqurreq.imageId = imageID
             new QurbaniService().RemoveQurbaniImage(state.delqurreq).then((response:any)=>{
                 if(response !== undefined){
-                    console.log("delete succesfully")
                    getQurbaniView();
                 }
             }).catch((error)=>{});
@@ -626,10 +624,8 @@ export default defineComponent({
 
         }
         const getQurbaniTypeView=(id:string)=>{
-          console.log("xyz up",id)
             new QurbaniService().GetQurbaniTypeView(id).then((response:any)=>{
                 if(response !== undefined){
-                    console.log("response xyz",response.data)
                     state.animalTypeForm.type= response.data.type;
                     state.animalTypeForm.base_price= response.data.base_price;
                     state.animalTypeForm.price= response.data.price;
@@ -642,7 +638,6 @@ export default defineComponent({
             let ID =id.toString()
             new QurbaniService().RemoveQurbani(ID).then((response:any)=>{
                 if(response !== undefined){
-                    console.log("delete succesfully")
                     router.push({ path:"/admin/qurbanis" })
                 }
             }).catch((error)=>{});
@@ -654,7 +649,6 @@ export default defineComponent({
             state.deltypreq.typeId = typeID
             new QurbaniService().RemoveQurbaniType(state.deltypreq).then((response:any)=>{
                 if(response !== undefined){
-                    console.log("delete succesfully")
                    getQurbaniView();
                 }
             }).catch((error)=>{});
@@ -675,9 +669,7 @@ export default defineComponent({
                     state.animalTypeForm.base_price= "";
                     state.animalTypeForm.price= "";
                 }
-            }).catch((error)=>{
-                console.log("error",error)
-            });
+            }).catch((error)=>{});
     }
 };
 const updateQurbaniTypeSubmit = () => {
@@ -696,9 +688,7 @@ const updateQurbaniTypeSubmit = () => {
                     state.updateTypeForm.base_price= "";
                     state.updateTypeForm.price= "";
                 }
-            }).catch((error)=>{
-                console.log("error",error)
-            });
+            }).catch((error)=>{});
     }
 };
         const reset=()=>{
@@ -735,7 +725,6 @@ const updateQurbaniTypeSubmit = () => {
       }
       function updateQurbaniTypes(id:string){
           state.updateAnimalType = true;
-          console.log("up id",id)
           getQurbaniTypeView(id)
           state.updateTypeForm.typeID = id
       }

@@ -84,10 +84,10 @@ export default class HijamaService {
       axios.get(url, { params, headers},)
         .then(function (response) {
           console.log(response)
-          resolve(response.data); // Resolve the promise with the response data
+          resolve(response.data);
         })
         .catch(function (error) {
-          reject(error); // Reject the promise with the error
+          reject(error);
         });
     });
   }
@@ -97,7 +97,6 @@ export default class HijamaService {
       const params = {
         packageId: payload,
       };
-      console.log("config.authUrl",config.authUrl)
       const url = config.authUrl + "/hijama/"+payload;
       const token = localStorage.getItem('token');
       const headers: AxiosRequestConfig['headers'] = {

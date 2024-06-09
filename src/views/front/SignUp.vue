@@ -515,7 +515,6 @@ export default defineComponent({
         new UserService()
           .CreateUser(state.form)
           .then((response: any) => {
-            console.log("new user",response)
             if (response !== undefined && response.CreateUserData !== undefined) {
               V1$.value.$reset();
               localStorage.setItem("userEmail", state.form.email);
