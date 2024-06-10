@@ -422,7 +422,13 @@ export default defineComponent({
             state.viewData = response.data;
           }
         })
-        .catch((error) => {});
+        .catch((error) => {
+           if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+        });
     };
     
     const removeHijamaImage=(imageID:string)=>{
@@ -441,7 +447,13 @@ export default defineComponent({
                 if(response !== undefined){
                      state.tableData = response.data.data;
                 }
-            }).catch((error)=>{});
+            }).catch((error)=>{
+               if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+            });
         }
 
         // file upload start
@@ -503,7 +515,11 @@ export default defineComponent({
                   state.addImage = false;
                 })
                 .catch((error: any) => {
-                  console.error("Error:", error);
+                  if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
             });
         }
     };
@@ -537,16 +553,16 @@ export default defineComponent({
                   getHijamaView();
                 })
                 .catch((error: any) => {
-                  console.error("Error:", error);
+                  if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
             });
         }
     };
       function selectImage(){
           state.imageModel = true
-          //  state.hijamaimageform.description = ""
-          //   state.hijamaimageform.enabled = ""
-          //   state.hijamaimageform.title = ""
-          //   state.hijamaimageform.url = ""
       }
 
       function iconID(url:any){

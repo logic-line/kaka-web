@@ -1,6 +1,6 @@
 <template>
-    <div class="flex flex-wrap items-center justify-between py-2 mb-4">
-        <p class=" text-2xl font-semibold text-black90 dark:text-white md:mb-0 mb-2">{{title}}</p>
+    <div class="flex flex-wrap items-center justify-between py-2">
+        <p class=" text-xl font-semibold text-black90 dark:text-white md:mb-0 mb-2">{{title}}</p>
         <div class="flex flex-wrap sm:flex-nowrap sm:space-x-2 sm:w-auto w-full">
             <div v-if="search" class="relative w-full border border-gray02 py-2 pl-3 pr-8">
                 <input :value="searchInput" @keyup.enter="$emit('enter:searchInput', $event.target.value)" class="pr-4 bg-transparent rounded-sm w-72 placeholder:text-black90 focus:outline-none" type="text" :placeholder="$t('message.searching')">

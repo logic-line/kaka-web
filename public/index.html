@@ -7,11 +7,24 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
+  <style>
+    
+    .max-w-resp{
+      width: 100%;
+    }
+    @media screen and (min-width: 1680px) {
+    .max-w-resp{
+      width: 1680px;
+      margin: auto;
+    }
+}
+
+  </style>
   <body>
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="app" class="roboto"></div>
+    <div id="app" class="roboto max-w-resp"></div>
     <!-- built files will be auto injected -->
   </body>
 </html>

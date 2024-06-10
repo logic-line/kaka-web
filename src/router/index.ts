@@ -166,6 +166,7 @@ const router = createRouter({
 });
 router.beforeEach(async (to, from, next) => {
   const token = getToken()
+  console.log("token",token)
   const isValidURL = to.name !== "not-found"; // or error404
   const isPublic = to.matched.some((route) => route.meta.public);
   if (isValidURL && !isPublic && !token) {

@@ -1,17 +1,17 @@
 <template>
-    <div class="overflow-hidden px-6 py-4">
+    <div class="overflow-hidden px-6 py-4 relative">
         <div v-if="isLoading" class="h-[507px] pt-2 pr-3" >
           <Loader :isLoading="isLoading" />
         </div>
         <PageHeader  
         title="Add Location">
             <template v-slot:body>
-                <router-link to="/admin/locations" class="flex items-center justify-center bg-kakaPrimary dark:text-black100 py-2.5 px-8 w-full rounded-sm bor">
+                <router-link to="/admin/locations" class="flex items-center justify-center bg-kakaPrimary dark:text-black100 py-2 px-8 w-full rounded-sm">
                     {{ $t('message.back-to-list') }}
                 </router-link>
             </template>
         </PageHeader>
-        <div class="p-4 shadow-md bg-gray-50 dark:bg-secondary10 dark:text-white relative">
+        <div class="shadow-md bg-gray-50 dark:bg-secondary10 dark:text-white h-540 overflow-y-auto">
             <div class="w-full  px-4 py-4">
                         <div class="flex items-center mb-2">
                             <label class="block capitalize" for="latitude">Location</label>
@@ -19,7 +19,7 @@
                         </div>
                        <!-- map  -->
                         <div>
-                            <GoogleMap ref="googleMap" :center="center" :zoom="zoom" style="width: 100%; height: 400px;" @click="handleMapClick">
+                            <GoogleMap ref="googleMap" :center="center" :zoom="zoom" style="width: 100%; height: 250px;" @click="handleMapClick">
                                 <Marker :position="center" />
                             </GoogleMap>
                         </div>
@@ -422,7 +422,13 @@ export default defineComponent({
                 if(response.error==true){
                     state.backerr = response.message
                 }
-            }).catch((error)=>{});
+            }).catch((error)=>{
+                 if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+            });
     }
 };
 // file upload start
@@ -525,7 +531,13 @@ const ImageList = ()=>{
                      state.tableData = response.data.data;
                     
                 }
-            }).catch((error)=>{});
+            }).catch((error)=>{
+                 if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+            });
         }
 
         const reset=()=>{

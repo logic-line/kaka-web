@@ -112,7 +112,11 @@ export default defineComponent({
         
       })
       .catch((error: any) => {
-        console.error("Error:", error);
+        if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
       });
     }
 };
@@ -139,7 +143,11 @@ export default defineComponent({
               router.push({ path:"/admin/images/list" })
             })
             .catch((error: any) => {
-              console.error("Error:", error);
+               if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
         });
     }
 };

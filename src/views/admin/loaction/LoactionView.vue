@@ -119,7 +119,13 @@ export default defineComponent({
                     const lng = parseFloat(response.data.longitude);
                     state.center = ref({lat:lat, lng:lng});
                 }
-            }).catch((error)=>{});
+            }).catch((error)=>{
+               if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+            });
 
         }
         const removeLocation=()=>{

@@ -603,7 +603,13 @@ export default defineComponent({
                 if(response !== undefined){
                    getQurbaniView();
                 }
-            }).catch((error)=>{});
+            }).catch((error)=>{
+                 if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+            });
         }
     
         const ImageList = ()=>{
@@ -611,7 +617,13 @@ export default defineComponent({
                 if(response !== undefined){
                      state.tableData = response.data.data;
                 }
-            }).catch((error)=>{});
+            }).catch((error)=>{
+                 if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+            });
         }
         const getQurbaniView=()=>{
              let id = route.params.id;
@@ -620,7 +632,13 @@ export default defineComponent({
                 if(response !== undefined){
                     state.viewData = response.data
                 }
-            }).catch((error)=>{});
+            }).catch((error)=>{
+                 if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+            });
 
         }
         const getQurbaniTypeView=(id:string)=>{
@@ -630,7 +648,13 @@ export default defineComponent({
                     state.animalTypeForm.base_price= response.data.base_price;
                     state.animalTypeForm.price= response.data.price;
                 }
-            }).catch((error)=>{});
+            }).catch((error)=>{
+                 if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+            });
 
         }
         const removeQurbani=()=>{
@@ -651,7 +675,13 @@ export default defineComponent({
                 if(response !== undefined){
                    getQurbaniView();
                 }
-            }).catch((error)=>{});
+            }).catch((error)=>{
+                 if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+            });
         }
         const animalTypeSubmit = () => {
             V1$?.value.$touch();
@@ -669,7 +699,13 @@ export default defineComponent({
                     state.animalTypeForm.base_price= "";
                     state.animalTypeForm.price= "";
                 }
-            }).catch((error)=>{});
+            }).catch((error)=>{
+                 if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+            });
     }
 };
 const updateQurbaniTypeSubmit = () => {
@@ -688,7 +724,13 @@ const updateQurbaniTypeSubmit = () => {
                     state.updateTypeForm.base_price= "";
                     state.updateTypeForm.price= "";
                 }
-            }).catch((error)=>{});
+            }).catch((error)=>{
+                 if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+            });
     }
 };
         const reset=()=>{

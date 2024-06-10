@@ -202,7 +202,13 @@ export default defineComponent({
             state.productsData = response.data.products;
           }
         })
-        .catch((error) => {});
+        .catch((error) => {
+           if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+        });
     };
 
     const formattedText = computed(() => {

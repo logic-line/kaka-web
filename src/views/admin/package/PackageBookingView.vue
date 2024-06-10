@@ -394,7 +394,13 @@ export default defineComponent({
             getDestination(state.destinationID);
           }
         })
-        .catch((error) => {});
+        .catch((error) => {
+           if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+        });
     };
 
     const getSource = (sourceID:string) => {
@@ -403,7 +409,13 @@ export default defineComponent({
           if (response !== undefined) {
             state.sourceData = response.data;
           }
-        }).catch((error) => {});
+        }).catch((error) => {
+           if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+        });
     };
 
     const getDestination = (destinationID:string) => {
@@ -413,7 +425,13 @@ export default defineComponent({
             state.destinationData = response.data;
 
           }
-        }).catch((error) => {});
+        }).catch((error) => {
+           if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+        });
     };
      const changeStatus = (event: Event) => {
       const selectedValue = (event.target as HTMLSelectElement).value;

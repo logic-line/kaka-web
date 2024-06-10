@@ -3,9 +3,9 @@
     <div v-if="isLoading" class="h-[507px] pt-2 pr-3" >
        <Loader :isLoading="isLoading" />
      </div>
-    <div class="bg-opacity-0">
+    <div class="bg-opacity-0 min-h-[calc(100vh-161px)] flex items-center">
            
-    <div class=" dark:bg-black100">
+    <div class=" dark:bg-black100 w-full">
         <div class="custom-max-width">
             <div class="px-4 py-3">
               <p>Hello, <span>Kaka</span></p>

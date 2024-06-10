@@ -298,7 +298,13 @@ export default defineComponent({
             state.centerD = ref({lat:latd, lng:lngd});
           }
         })
-        .catch((error) => {});
+        .catch((error) => {
+           if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+        });
     };
 
     const formattedText = computed(() => {

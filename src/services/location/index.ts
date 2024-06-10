@@ -104,6 +104,7 @@ export default class LocationService {
           resolve(response.data);
         })
         .catch(function (error) {
+          // console.log("error xxx",error.response.status)
           reject(error);
         });
     });

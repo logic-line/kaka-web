@@ -200,7 +200,13 @@ export default defineComponent({
             state.userData = response.data.user;
           }
         })
-        .catch((error) => {});
+        .catch((error) => {
+           if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+        });
     };
     const changeStatus = (event: Event) => {
       const selectedValue = (event.target as HTMLSelectElement).value;
@@ -214,7 +220,11 @@ export default defineComponent({
           }
         })
         .catch((error) => {
-          console.error("Error changing status:", error);
+           if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
         });
     };
 
