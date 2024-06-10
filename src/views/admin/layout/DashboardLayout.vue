@@ -3,7 +3,7 @@
       <div class="bg-white dark:bg-black h-screen relative z-0">
         <!-- header start -->
         <div class="flex items-center justify-between px-6 py-4 custom-shodow-one w-full sticky top-0 left-0 bg-kakaPrimary dark:bg-black z-90">
-          <div class="sm:w-64 py-4">
+          <div class="sm:w-64 w-full py-4">
               <div class="flex lg:justify-between space-x-0">
                 <div class="lg:block hidden">
                   <router-link to="/home" class="main-route">
@@ -14,7 +14,7 @@
                   </router-link>
                 </div>
                   <router-link to="/home" class="main-route">
-                    <img class="w-10 lg:hidden block" src="@/assets/images/kaka.svg" alt="">
+                    <img class="w-20 md:w-10 lg:hidden block" src="@/assets/images/kaka.svg" alt="">
                   </router-link>
                 <div v-if="islogin"  class="my-auto ml-7 mr-3">
                   <img @click="toggelSidebar" class="dark:block hidden cursor-pointer ml-3" src="@/assets/images/colapslogo-dark.svg" alt="">
@@ -130,12 +130,7 @@
                       </li>
                   </ul>
                   <ul v-if="!islogin" class="flex items-center justify-end text-black100">
-                      <li class="md:block hidden" v-if="!authData.isValidToken">
-                          <router-link class="block cursor-pointer hover:bg-black  hover:text-white dark:text-secondary py-2 px-4" to="/signup">
-                            {{ $t('message.signup') }}
-                          </router-link>
-                      </li>
-                      <li v-if="!authData.isValidToken" class="pr-4 md:block hidden">
+                      <li v-if="!authData.isValidToken" class="pr-4 block">
                           <router-link class="block cursor-pointer hover:bg-black  hover:text-white dark:text-secondary py-2 px-4" to="/signin">
                             {{ $t('message.login') }} 
                           </router-link>
@@ -143,8 +138,11 @@
   
                   </ul>
                   <ul v-if="islogin" class="flex items-center justify-end text-black100">
-                    <div @click="logout" class="flex justify-center cursor-pointer text-center py-2 px-4 font-medium hover:bg-black hover:text-white duration-500 text-black100 dark:text-secondary">
-                      {{ $t('message.logout') }}
+                    <div @click="logout" class="flex justify-center cursor-pointer text-center py-2 px-4 font-medium">
+                      <!-- {{ $t('message.logout') }} -->
+                      <span>
+                          <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path class="fa-secondary" opacity=".4" d="M256 0c17.7 0 32 14.3 32 32V256c0 17.7-14.3 32-32 32s-32-14.3-32-32V32c0-17.7 14.3-32 32-32z"/><path class="fa-primary" d="M147.7 75.5c11.3 13.6 9.4 33.8-4.1 45.1C104.7 152.9 80 201.6 80 256c0 97.2 78.8 176 176 176s176-78.8 176-176c0-54.4-24.7-103.1-63.5-135.4c-13.6-11.3-15.4-31.5-4.1-45.1s31.5-15.4 45.1-4.1C462.2 115.4 496 181.8 496 256c0 132.5-107.5 240-240 240S16 388.6 16 256c0-74.2 33.7-140.6 86.6-184.6c13.6-11.3 33.8-9.4 45.1 4.1z"/></svg>
+                      </span>
                     </div>
                   </ul>
                 </div>

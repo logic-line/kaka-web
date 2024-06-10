@@ -136,12 +136,12 @@
                     </li>
                 </ul>
                 <ul class="flex items-center justify-end">
-                    <li class="md:block hidden" v-if="!authData.isValidToken">
+                    <!-- <li class="block" v-if="!authData.isValidToken">
                         <router-link class="block cursor-pointer hover:bg-kakaPrimary text-black100 hover:text-white dark:text-secondary py-2 px-4" to="/signup">
                           {{ $t('message.signup') }}
                         </router-link>
-                    </li>
-                    <li v-if="!authData.isValidToken" class="pr-4 md:block hidden">
+                    </li> -->
+                    <li v-if="!authData.isValidToken" class="pr-4 block">
                         <router-link class="block cursor-pointer hover:bg-kakaPrimary text-black100 hover:text-white dark:text-secondary py-2 px-4" to="/signin">
                           {{ $t('message.login') }} 
                         </router-link>

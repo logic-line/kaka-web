@@ -15,7 +15,7 @@
     </PageHeader>
 
     <div
-      class="p-8 mb-10 bg-gray-50 dark:bg-secondary10 dark:text-white border border-gray-300 dark:border-gray-500"
+      class="md:px-8 py-8 px-4  mb-10 bg-gray-50 dark:bg-secondary10 dark:text-white border border-gray-300 dark:border-gray-500"
     >
       <div
         class="flex flex-wrap items-center justify-between border-b pb-4 border-gray-300 dark:border-gray-500"
@@ -120,10 +120,11 @@ export default defineComponent({
                     state.center = ref({lat:lat, lng:lng});
                 }
             }).catch((error)=>{
-               if(error.response.status === 401){
-                    console.log("logout")
-                    localStorage.removeItem('token');
-                    router.push({ path: "/signin" });
+               if(error.response != undefined){
+                    if(error.response.status === 401){
+                       localStorage.removeItem('token');
+                       router.push({ path: "/signin" });
+                   }
                 }
             });
 

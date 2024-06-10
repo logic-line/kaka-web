@@ -123,7 +123,7 @@
                     </div>
                     
                 </div>
-                <div class="mt-8 px-4 w-full flex flex-wrap items-center space-x-2 md:space-x-10">
+                <div class="mt-8 px-4 w-full flex flex-wrap items-center space-x-0 md:space-x-10">
                     <div class="">
                         <button @click="reset" class="px-10 rounded-sm py-2.5 text-white bg-orange-600" type="reset">{{ $t('message.reset') }}</button>
                     </div>
@@ -407,10 +407,11 @@ export default defineComponent({
                     state.backerr = response.message
                 }
             }).catch((error)=>{
-                 if(error.response.status === 401){
-                    console.log("logout")
-                    localStorage.removeItem('token');
-                    router.push({ path: "/signin" });
+                 if(error.response != undefined){
+                    if(error.response.status === 401){
+                       localStorage.removeItem('token');
+                       router.push({ path: "/signin" });
+                   }
                 }
             });
     }
@@ -570,10 +571,11 @@ const ImageList = ()=>{
                     state.form.banner= response.data.banner
                 }
             }).catch((error)=>{
-                 if(error.response.status === 401){
-                    console.log("logout")
-                    localStorage.removeItem('token');
-                    router.push({ path: "/signin" });
+                 if(error.response != undefined){
+                    if(error.response.status === 401){
+                       localStorage.removeItem('token');
+                       router.push({ path: "/signin" });
+                   }
                 }
             });
 

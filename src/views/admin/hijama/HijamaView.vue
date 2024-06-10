@@ -14,7 +14,7 @@
       </template>
     </PageHeader>
 
-   <div class="p-8 mb-10  dark:bg-secondary10 dark:text-white border border-gray-300 dark:border-gray-500">
+   <div class="px-4 md:px-8 py-8 mb-10  dark:bg-secondary10 dark:text-white border border-gray-300 dark:border-gray-500">
       <div v-if="!imageModel">
         <div  class="flex flex-wrap items-center justify-between border-b pb-4 border-gray-300 dark:border-gray-500">
         <p class="py-2">Hijama Details</p>
@@ -423,10 +423,11 @@ export default defineComponent({
           }
         })
         .catch((error) => {
-           if(error.response.status === 401){
-                    console.log("logout")
-                    localStorage.removeItem('token');
-                    router.push({ path: "/signin" });
+           if(error.response != undefined){
+                    if(error.response.status === 401){
+                       localStorage.removeItem('token');
+                       router.push({ path: "/signin" });
+                   }
                 }
         });
     };
@@ -448,10 +449,11 @@ export default defineComponent({
                      state.tableData = response.data.data;
                 }
             }).catch((error)=>{
-               if(error.response.status === 401){
-                    console.log("logout")
-                    localStorage.removeItem('token');
-                    router.push({ path: "/signin" });
+               if(error.response != undefined){
+                    if(error.response.status === 401){
+                       localStorage.removeItem('token');
+                       router.push({ path: "/signin" });
+                   }
                 }
             });
         }
@@ -515,10 +517,11 @@ export default defineComponent({
                   state.addImage = false;
                 })
                 .catch((error: any) => {
-                  if(error.response.status === 401){
-                    console.log("logout")
-                    localStorage.removeItem('token');
-                    router.push({ path: "/signin" });
+                  if(error.response != undefined){
+                    if(error.response.status === 401){
+                       localStorage.removeItem('token');
+                       router.push({ path: "/signin" });
+                   }
                 }
             });
         }
@@ -553,10 +556,11 @@ export default defineComponent({
                   getHijamaView();
                 })
                 .catch((error: any) => {
-                  if(error.response.status === 401){
-                    console.log("logout")
-                    localStorage.removeItem('token');
-                    router.push({ path: "/signin" });
+                  if(error.response != undefined){
+                    if(error.response.status === 401){
+                       localStorage.removeItem('token');
+                       router.push({ path: "/signin" });
+                   }
                 }
             });
         }

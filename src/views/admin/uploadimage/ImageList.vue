@@ -83,10 +83,11 @@ export default defineComponent({
                     
                 }
             }).catch((error)=>{
-               if(error.response.status === 401){
-                    console.log("logout")
-                    localStorage.removeItem('token');
-                    router.push({ path: "/signin" });
+               if(error.response != undefined){
+                    if(error.response.status === 401){
+                       localStorage.removeItem('token');
+                       router.push({ path: "/signin" });
+                   }
                 }
             });
         }
@@ -97,10 +98,11 @@ export default defineComponent({
                     setTableData();
                     }
                 }).catch((error)=>{
-                   if(error.response.status === 401){
-                    console.log("logout")
-                    localStorage.removeItem('token');
-                    router.push({ path: "/signin" });
+                   if(error.response != undefined){
+                    if(error.response.status === 401){
+                       localStorage.removeItem('token');
+                       router.push({ path: "/signin" });
+                   }
                 }
                 });
         }

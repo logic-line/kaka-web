@@ -51,7 +51,6 @@
                 <th class="lg:hidden"></th>
                 <table-title-column class="hidden lg:table-cell" name="Icon"  ></table-title-column>
                 <table-title-column class="table-cell" name="Name"  ></table-title-column>
-                <table-title-column class="table-cell" name="Description" ></table-title-column>
                 <table-title-column class="table-cell" name="Enabled"  ></table-title-column>
                 <th class="text-sm dark:text-secondary font-medium text-black100 cursor-pointer px-6 py-4">
                     <div class="flex items-center justify-end space-x-1.5">
@@ -64,7 +63,6 @@
                 <tr v-for="data in tableData" :key="data.id" class="border dark:bg-black100 bg-secondary10">
                     <table-data-comp-img class="w-10 h-10" :src="data.icon ? data.icon : 'https://islamicimages.in/wp-content/uploads/2023/02/Featured-image-of-Madina-Sharif_result.webp'"></table-data-comp-img>
                     <table-data-comp :data="data.name"></table-data-comp>
-                    <table-data-comp :data="data.description"></table-data-comp>
                     <td class="px-3 sm:px-6 py-3">
                         <div class="flex items-center justify-start space-x-3 dark:text-secondary text-black100 font-medium">
                             <span class="border px-4 py-onehalf rounded-xs" :class="data.enabled === false ? 'bg-red-500 text-white' : 'bg-kakaPrimary'">{{data.enabled === false?'Inactive':'Active'}}</span>
@@ -170,10 +168,11 @@ export default defineComponent({
                     state.limit = response.data.perPage
                 }
             }).catch((error)=>{
-                 if(error.response.status === 401){
-                    console.log("logout")
-                    localStorage.removeItem('token');
-                    router.push({ path: "/signin" });
+                 if(error.response != undefined){
+                    if(error.response.status === 401){
+                       localStorage.removeItem('token');
+                       router.push({ path: "/signin" });
+                   }
                 }
             });
         }

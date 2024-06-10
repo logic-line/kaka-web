@@ -14,10 +14,10 @@
       </template>
     </PageHeader>
 
-    <div class="p-8 mb-10 bg-gray-50 dark:bg-secondary10 dark:text-white border border-gray-300 dark:border-gray-500">
+    <div class="md:px-8 py-8 px-4 mb-10 bg-gray-50 dark:bg-secondary10 dark:text-white border border-gray-300 dark:border-gray-500">
      
       <div v-if="!imageModel" class="w-full md:w-1/2 mx-auto shadow-2xl bg-white">
-        <div class="flex justify-between">
+        <div class="flex justify-between md:text-base text-sm">
             <p class="border px-4 py-2" :class="viewData.enabled === false ? 'bg-red-500 text-white' : 'bg-kakaPrimary'">
                 {{viewData.enabled === false?'Inactive':'Active'}}
             </p>
@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 </div>
-                <p @click="addQurbaniType" class="w-full bg-kakaPrimary text-sm cursor-pointer py-1 my-2 uppercase flex justify-center items-center">
+                <p @click="addQurbaniType" class="w-full bg-kakaPrimary text-center text-sm cursor-pointer py-1 my-2 uppercase flex justify-center items-center">
                     Add More Animal Types
                     <span class="ml-1">
                       <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -257,7 +257,7 @@
                                      </div>
                                     
                                 </div>
-                                <div class="mt-8 px-4 w-full flex flex-wrap items-center space-x-2 md:space-x-10">
+                                <div class="mt-8 px-4 w-full flex flex-wrap items-center space-x-0 md:space-x-10">
                                     <div class="">
                                         <button @click="reset" class="px-10 rounded-sm py-2.5 text-white bg-orange-600" type="reset">{{ $t('message.reset') }}</button>
                                     </div>
@@ -314,7 +314,7 @@
                                      </div>
                                     
                                 </div>
-                                <div class="mt-8 px-4 w-full flex flex-wrap items-center space-x-2 md:space-x-10">
+                                <div class="mt-8 px-4 w-full flex flex-wrap items-center space-x-0 md:space-x-10">
                                     <div class="">
                                         <button @click="reset" class="px-10 rounded-sm py-2.5 text-white bg-orange-600" type="reset">{{ $t('message.reset') }}</button>
                                     </div>
@@ -604,10 +604,11 @@ export default defineComponent({
                    getQurbaniView();
                 }
             }).catch((error)=>{
-                 if(error.response.status === 401){
-                    console.log("logout")
-                    localStorage.removeItem('token');
-                    router.push({ path: "/signin" });
+                 if(error.response != undefined){
+                    if(error.response.status === 401){
+                       localStorage.removeItem('token');
+                       router.push({ path: "/signin" });
+                   }
                 }
             });
         }
@@ -618,10 +619,11 @@ export default defineComponent({
                      state.tableData = response.data.data;
                 }
             }).catch((error)=>{
-                 if(error.response.status === 401){
-                    console.log("logout")
-                    localStorage.removeItem('token');
-                    router.push({ path: "/signin" });
+                 if(error.response != undefined){
+                    if(error.response.status === 401){
+                       localStorage.removeItem('token');
+                       router.push({ path: "/signin" });
+                   }
                 }
             });
         }
@@ -633,10 +635,11 @@ export default defineComponent({
                     state.viewData = response.data
                 }
             }).catch((error)=>{
-                 if(error.response.status === 401){
-                    console.log("logout")
-                    localStorage.removeItem('token');
-                    router.push({ path: "/signin" });
+                 if(error.response != undefined){
+                    if(error.response.status === 401){
+                       localStorage.removeItem('token');
+                       router.push({ path: "/signin" });
+                   }
                 }
             });
 
@@ -649,10 +652,11 @@ export default defineComponent({
                     state.animalTypeForm.price= response.data.price;
                 }
             }).catch((error)=>{
-                 if(error.response.status === 401){
-                    console.log("logout")
-                    localStorage.removeItem('token');
-                    router.push({ path: "/signin" });
+                 if(error.response != undefined){
+                    if(error.response.status === 401){
+                       localStorage.removeItem('token');
+                       router.push({ path: "/signin" });
+                   }
                 }
             });
 
@@ -676,10 +680,11 @@ export default defineComponent({
                    getQurbaniView();
                 }
             }).catch((error)=>{
-                 if(error.response.status === 401){
-                    console.log("logout")
-                    localStorage.removeItem('token');
-                    router.push({ path: "/signin" });
+                 if(error.response != undefined){
+                    if(error.response.status === 401){
+                       localStorage.removeItem('token');
+                       router.push({ path: "/signin" });
+                   }
                 }
             });
         }
@@ -700,10 +705,11 @@ export default defineComponent({
                     state.animalTypeForm.price= "";
                 }
             }).catch((error)=>{
-                 if(error.response.status === 401){
-                    console.log("logout")
-                    localStorage.removeItem('token');
-                    router.push({ path: "/signin" });
+                 if(error.response != undefined){
+                    if(error.response.status === 401){
+                       localStorage.removeItem('token');
+                       router.push({ path: "/signin" });
+                   }
                 }
             });
     }
@@ -725,10 +731,11 @@ const updateQurbaniTypeSubmit = () => {
                     state.updateTypeForm.price= "";
                 }
             }).catch((error)=>{
-                 if(error.response.status === 401){
-                    console.log("logout")
-                    localStorage.removeItem('token');
-                    router.push({ path: "/signin" });
+                 if(error.response != undefined){
+                    if(error.response.status === 401){
+                       localStorage.removeItem('token');
+                       router.push({ path: "/signin" });
+                   }
                 }
             });
     }
