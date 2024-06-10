@@ -1,17 +1,17 @@
 <template>
-    <div class="overflow-hidden px-6 py-4">
+    <div class="overflow-hidden px-6 py-4 relative">
         <div v-if="isLoading" class="h-[507px] pt-2 pr-3" >
           <Loader :isLoading="isLoading" />
         </div>
         <PageHeader  
         title="Add Package">
             <template v-slot:body>
-                <router-link to="/admin/packages" class="flex items-center justify-center bg-kakaPrimary dark:text-black100 py-2.5 px-8 w-full rounded-sm bor">
+                <router-link to="/admin/packages" class="flex items-center justify-center bg-kakaPrimary dark:text-black100 py-2 px-8 w-full rounded-sm bor">
                     {{ $t('message.back-to-list') }}
                 </router-link>
             </template>
         </PageHeader>
-        <div class="p-4 shadow-md bg-gray-50 dark:bg-secondary10 dark:text-white relative">
+        <div class="shadow-md bg-gray-50 dark:bg-secondary10 dark:text-white h-540 overflow-y-auto">
            
             <form @submit.prevent="packagesSubmit">
                 <div class="flex flex-wrap">
@@ -199,7 +199,7 @@
                     </div>
                     
                 </div>
-                <div class="mt-8 w-full flex flex-wrap items-center space-x-2 md:space-x-10">
+                <div class="mt-8 px-4 w-full flex flex-wrap items-center space-x-2 md:space-x-10">
                     <div class="">
                         <button @click="reset" class="px-10 rounded-sm py-2.5 text-white bg-orange-600" type="reset">{{ $t('message.reset') }}</button>
                     </div>
@@ -211,33 +211,6 @@
                     <p class="text-xs text-red-500">{{backerr}}</p>
                 </div>
             </form>
-            <!-- <div v-if="imageModel" class="imageModel absolute top-0 left-0 w-full h-full z-90">
-                <div class="flex w-full h-full bg-black-op justify-center items-center">
-                    <div class="w-1/2 bg-white h-300px overflow-y-auto">
-                        <p @click="closeIcon" class="flex justify-end px-4 py-2">
-                            <span class=" cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                </svg>
-
-                            </span>
-                        </p>
-                        <div class="flex flex-wrap">
-                            <div v-for="(item, index) in tableData" :key="index" class="md:w-1/4 w-full">
-                               <div @click="iconUrl(item.url)" class="px-4 py-4">
-                                 <div>
-                                    <img class="h-full md:h-24 w-full" :src="item.url" alt="">
-                                </div>
-                                <p class="text-center">{{item.name}}</p>
-                               </div>
-                            </div>
-                        </div>
-                        <div class="px-4 py-4">
-                             <a href="/admin/images/upload" class="inline-block w-full px-4 py-4 text-center bg-kakaPrimary">Add More</a>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             <div v-if="imageModel" class="imageModel absolute top-0 left-0 w-full h-full z-90">
                 <div class="flex w-full h-full bg-black-op justify-center items-end md:items-center px-4 py-4">
                     <div class="w-full md:w-1/2 bg-white h-420 overflow-y-auto">
@@ -310,33 +283,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div v-if="bannerModel" class="absolute top-0 left-0 w-full h-full z-90">
-                <div class="flex w-full h-full bg-black-op justify-center items-center">
-                    <div class="w-1/2 bg-white h-300px overflow-y-auto">
-                    <p @click="closeBanner" class="flex justify-end px-4 py-2">
-                            <span class=" cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                </svg>
-
-                            </span>
-                        </p>
-                        <div class="flex flex-wrap">
-                            <div v-for="(item, index) in tableData" :key="index" class="md:w-1/4 w-full">
-                               <div @click="bannerUrl(item.url)" class="px-4 py-4">
-                                 <div>
-                                    <img class="h-full md:h-24 w-full" :src="item.url" alt="">
-                                </div>
-                                <p class="text-center">{{item.name}}</p>
-                               </div>
-                            </div>
-                        </div>
-                         <div class="px-4 py-4">
-                             <a href="/admin/images/upload" class="inline-block w-full px-4 py-4 text-center bg-kakaPrimary">Add More</a>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             <div v-if="bannerModel" class="absolute top-0 left-0 w-full h-full z-90">
                 <div class="flex w-full h-full bg-black-op justify-center items-end md:items-center px-4 py-4">
                     <div class="w-full md:w-1/2 bg-white h-420 overflow-y-auto">
@@ -595,7 +541,13 @@ export default defineComponent({
                  if(response.error==true){
                     state.backerr = response.message
                 }
-            }).catch((error)=>{});
+            }).catch((error)=>{
+                 if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+            });
     }
 };
 

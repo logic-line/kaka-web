@@ -478,3 +478,6 @@ input:checked + .slider:before{
   padding-top: 2px;
   padding-bottom: 2px;
 }
+.h-540{
+height: 540px;
+}

@@ -422,6 +422,11 @@ export default defineComponent({
                     router.push({ path:"/admin/packages" })
                 }
             }).catch((error)=>{
+                 if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
             });
     }
 };

@@ -290,7 +290,13 @@ export default defineComponent({
             state.animalTypeData = response.data.qurbani_animal_type;
           }
         })
-        .catch((error) => {});
+        .catch((error) => {
+           if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+        });
     };
     const changeStatus = (event: Event) => {
       const selectedValue = (event.target as HTMLSelectElement).value;

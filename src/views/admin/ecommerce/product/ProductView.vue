@@ -456,7 +456,13 @@ export default defineComponent({
                 if(response !== undefined){
                      state.tableData = response.data.data;
                 }
-            }).catch((error)=>{});
+            }).catch((error)=>{
+               if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+            });
         }
 
         // file upload start

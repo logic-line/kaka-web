@@ -41,6 +41,7 @@ import "vue3-toastify/dist/index.css";
 import { toastrMsg } from "../../../utils/toastr";
 import { routeGroupCheck } from "../../../utils/route-utils";
 import Loader from "../../../components/comp/Loader.vue";
+import router from "@/router";
 
 let listFilterData: ListImageRequest = {
   perPage: 20,
@@ -81,7 +82,13 @@ export default defineComponent({
                      state.tableData = response.data.data;
                     
                 }
-            }).catch((error)=>{});
+            }).catch((error)=>{
+               if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+            });
         }
 
         const RemoveImage=(id :any)=>{
@@ -89,7 +96,13 @@ export default defineComponent({
                 if(response !== undefined){
                     setTableData();
                     }
-                }).catch((error)=>{});
+                }).catch((error)=>{
+                   if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+                });
         }
 
     onBeforeUnmount(() => {

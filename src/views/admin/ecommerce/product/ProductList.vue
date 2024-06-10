@@ -132,6 +132,7 @@ import { toastrMsg } from "../../../../utils/toastr";
 import { routeGroupCheck } from "../../../../utils/route-utils"
 import Loader from '../../../../components/comp/Loader.vue';
 import TablePaginationLimit from '../../../../components/list/TablePaginationLimit.vue';
+import router from '@/router';
 
 let listFilterData : ProductListRequest={
         perPage:10,
@@ -176,7 +177,13 @@ export default defineComponent({
                     state.limit = response.data.perPage
                     
                 }
-            }).catch((error)=>{});
+            }).catch((error)=>{
+                 if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+            });
         }
          function pagginationButtonClick(p:number){
             state.filterForm.page = p

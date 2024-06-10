@@ -6,12 +6,12 @@
         <PageHeader  
         title="Update Hijama">
             <template v-slot:body>
-                <router-link to="/admin/hijamas" class="flex items-center justify-center bg-kakaPrimary dark:text-black100 py-2.5 px-8 w-full rounded-sm bor">
+                <router-link to="/admin/hijamas" class="flex items-center justify-center bg-kakaPrimary dark:text-black100 py-2 px-8 w-full rounded-sm bor">
                     {{ $t('message.back-to-list') }}
                 </router-link>
             </template>
         </PageHeader>
-        <div class="p-4 shadow-md bg-gray-50 dark:bg-secondary10 dark:text-white">
+        <div class="shadow-md bg-gray-50 dark:bg-secondary10 dark:text-white h-540 overflow-y-auto">
            
             <form @submit.prevent="hijamaSubmit">
                 <div class="flex flex-wrap">
@@ -132,7 +132,7 @@
                     </div>
                     
                 </div>
-                <div class="mt-8 w-full flex flex-wrap items-center space-x-2 md:space-x-10">
+                <div class="mt-8 px-4 w-full flex flex-wrap items-center space-x-2 md:space-x-10">
                     <div class="">
                         <button @click="reset" class="px-10 rounded-sm py-2.5 text-white bg-orange-600" type="reset">{{ $t('message.reset') }}</button>
                     </div>
@@ -501,7 +501,11 @@ const submitForm = () => {
 
             })
             .catch((error: any) => {
-              console.error("Error:", error);
+              if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
         });
     }
 };
@@ -541,7 +545,13 @@ const ImageList = ()=>{
              state.tableData = response.data.data;
             
         }
-    }).catch((error)=>{});
+    }).catch((error)=>{
+         if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+    });
 }
  
 const getHijamaView = () => {
@@ -560,7 +570,13 @@ const getHijamaView = () => {
             state.form.offer_applicable = response.data.offer_applicable
           }
         })
-        .catch((error) => {});
+        .catch((error) => {
+             if(error.response.status === 401){
+                    console.log("logout")
+                    localStorage.removeItem('token');
+                    router.push({ path: "/signin" });
+                }
+        });
     };
 
         const reset=()=>{
