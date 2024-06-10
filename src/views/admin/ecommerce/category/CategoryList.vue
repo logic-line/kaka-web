@@ -10,7 +10,7 @@
             @enter:searchInput="setNewTableData"
             @search="getListBySearch" 
             @resetSearch="resetSearchTerm"
-            title="Category Lists">
+            title="Category List">
             
         </PageHeader>
 
@@ -48,11 +48,10 @@
         </div>
         <TableCompo id="tableContainer"> 
             <template v-slot:header>
-                <th class="lg:hidden"></th>
-                <table-title-column class="hidden lg:table-cell" name="Icon"  ></table-title-column>
-                <table-title-column class="hidden lg:table-cell" name="Title"  ></table-title-column>
-                <table-title-column class="hidden lg:table-cell" name="Description" ></table-title-column>
-                <table-title-column class="hidden lg:table-cell" name="Enabled"  ></table-title-column>
+                <!-- <th class="lg:hidden"></th> -->
+                <table-title-column class="table-cell" name="Icon"  ></table-title-column>
+                <table-title-column class="table-cell" name="Title"  ></table-title-column>
+                <table-title-column class="table-cell" name="Enabled"  ></table-title-column>
                 <th class="text-sm dark:text-secondary font-medium text-black100 cursor-pointer px-6 py-4">
                     <div class="flex items-center justify-end space-x-1.5">
                         <span>{{ $t('message.action') }}</span>
@@ -68,7 +67,6 @@
                         </div>
                     </td>
                     <table-data-comp :data="data.title"></table-data-comp>
-                    <table-data-comp :data="data.description"></table-data-comp>
                     <td class="px-3 sm:px-6 py-3">
                         <div class="flex items-center justify-start space-x-3 dark:text-secondary text-black100 font-medium">
                             <span class="border px-4 py-1 rounded-xs" :class="data.enabled === false ? 'bg-red-500 text-white' : 'bg-kakaPrimary'">{{data.enabled === false?'Inactive':'Active'}}</span>
@@ -173,10 +171,11 @@ export default defineComponent({
                     
                 }
             }).catch((error)=>{
-                 if(error.response.status === 401){
-                    console.log("logout")
-                    localStorage.removeItem('token');
-                    router.push({ path: "/signin" });
+                 if(error.response != undefined){
+                    if(error.response.status === 401){
+                       localStorage.removeItem('token');
+                       router.push({ path: "/signin" });
+                   }
                 }
             });
         }

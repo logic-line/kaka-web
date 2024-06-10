@@ -5,7 +5,7 @@
          <Loader :isLoading="isLoading" />
      </div>
     <main>
-      <div class="flex items-center lg:custom-height-screen pt-36  pb-6 lg:pb-0">
+      <div class="flex items-center lg:custom-height-screen pt-10 md:pt-28  pb-6 lg:pb-0">
         <form
           @submit.prevent="loginUser"
           class="2xl:w-1/3 lg:w-2/4 md:w-3/5 mx-auto px-6"
@@ -133,14 +133,7 @@
               Login
             </button>
           </div>
-          <div class="mt-7">
-            <div class="mt-7">
-              <span class="text-black100 dark:text-white text-center block"
-                >{{ $t("message.already-have-an-account") }}
-                <router-link to="/signin" class="text-kakaPrimary">Login</router-link></span
-              >
-            </div>
-          </div>
+          
         </form>
       </div>
     </main>

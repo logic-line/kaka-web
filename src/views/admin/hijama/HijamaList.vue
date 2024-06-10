@@ -10,7 +10,7 @@
             @enter:searchInput="setNewTableData"
             @search="getListBySearch" 
             @resetSearch="resetSearchTerm"
-            title="Hijama Lists">
+            title="Hijama List">
             
         </PageHeader>
 
@@ -48,13 +48,12 @@
         </div>
         <TableCompo id="tableContainer"> 
             <template v-slot:header>
-                <th class="lg:hidden"></th>
-                <table-title-column class="hidden lg:table-cell" name="Icon"  ></table-title-column>
-                <table-title-column class="hidden lg:table-cell" name="Title"  ></table-title-column>
-                <table-title-column class="hidden lg:table-cell" name="Base Price" ></table-title-column>
-                <table-title-column class="hidden lg:table-cell" name="Price" ></table-title-column>
-                <table-title-column class="hidden lg:table-cell" name="stock" ></table-title-column>
-                <table-title-column class="hidden lg:table-cell" name="Enabled"  ></table-title-column>
+                <table-title-column class="table-cell" name="Icon"  ></table-title-column>
+                <table-title-column class="table-cell" name="Title"  ></table-title-column>
+                <table-title-column class="table-cell" name="Base Price" ></table-title-column>
+                <table-title-column class="table-cell" name="Price" ></table-title-column>
+                <table-title-column class="table-cell" name="stock" ></table-title-column>
+                <table-title-column class="table-cell" name="Enabled"  ></table-title-column>
                 <th class="text-sm dark:text-secondary font-medium text-black100 cursor-pointer px-6 py-4">
                     <div class="flex items-center justify-end space-x-1.5">
                         <span>{{ $t('message.action') }}</span>
@@ -177,10 +176,11 @@ export default defineComponent({
                     
                 }
             }).catch((error)=>{
-                 if(error.response.status === 401){
-                    console.log("logout")
-                    localStorage.removeItem('token');
-                    router.push({ path: "/signin" });
+                 if(error.response != undefined){
+                    if(error.response.status === 401){
+                       localStorage.removeItem('token');
+                       router.push({ path: "/signin" });
+                   }
                 }
             });
         }

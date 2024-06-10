@@ -14,7 +14,7 @@
                   </router-link>
                 </div>
                   <router-link to="/home" class="main-route">
-                    <img class="w-10 lg:hidden block" src="@/assets/images/kaka.svg" alt="">
+                    <img class="w-20 md:w-10 lg:hidden block" src="@/assets/images/kaka.svg" alt="">
                   </router-link>
               </div>
           </div>
@@ -24,18 +24,11 @@
                 <div class="flex items-center justify-end">
                   
                   <ul class="flex items-center justify-end">
-                      <li class="md:block hidden" v-if="!authData.isValidToken">
-                          <router-link class="block cursor-pointer hover:bg-black  text-white dark:text-secondary py-2 px-4" to="/signup">
-                            {{ $t('message.signup') }}
-                          </router-link>
-                      </li>
-                      <li v-if="!authData.isValidToken" class="pr-4 md:block hidden">
+                      <li v-if="!authData.isValidToken" class="pr-4 block">
                           <router-link class="block cursor-pointer hover:bg-black  text-white dark:text-secondary py-2 px-4" to="/signin">
                             {{ $t('message.login') }} 
                           </router-link>
                       </li>
-  
-                      
                   </ul>
                 </div>
             </div>
@@ -48,7 +41,7 @@
           <!-- sidebar end -->
     
           <div id="main-content" class="w-full bg-white dark:bg-black100 dark:text-white custom-height-screen overflow-y-scroll shadow-md">
-            <router-view :key="$route.fullPath" class="min-h-[calc(100vh-137px)]"></router-view>
+            <router-view :key="$route.fullPath" class="min-h-[calc(100vh-161px)]"></router-view>
             <footer class="text-center bg-gray-100 dark:bg-black dark:text-white border-t border-transparent dborder-t dark:border-gray-800">
               <p class="p-4">&copy; Copyright LogicLine 2024 </p>
             </footer>
