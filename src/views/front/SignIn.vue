@@ -288,7 +288,7 @@ export default defineComponent({
               state.form.email = "";
               state.form.password = "";
               localStorage.setItem('token', response.data.data.token);
-              router.push({ path: "/home" });
+              router.push({ path: "/admin/dashboard" });
             }
           })
           .catch((error:any) => {

@@ -70,6 +70,8 @@ const routes: Array<RouteRecordRaw> = [
     component: DashboardLayout,
     meta: { public: false },
     children: [
+      { path: "/admin/dashboard", name: "dashboard", component: Dashboard, meta: { name: "dashboard",title:"Dashbaord" } },
+
       { path: "/admin/users/invite", name: "invite-user", component: InviteUser, meta: { name: "user",title:"Invite User" } },
       { path: "/admin/users", name: "user-list", component: UserList, meta: { name: "user" ,title:"Users"} },
 
