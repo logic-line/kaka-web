@@ -175,6 +175,8 @@ module.exports = {
       white60 : 'rgba(255, 255, 255, 0.6)',
       gray02 : '#656575',
       kakaPrimary:'#90EE90',
+      kakaLight:'#ebf5eb',
+      kakaDeep:'#006100',
       kakaCard1:'#90BFEE',
       kakaCard2:'#EE9090',
       kakaCard3:'#EEBF90',

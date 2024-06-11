@@ -43,7 +43,7 @@
           <div id="main-content" class="w-full bg-white dark:bg-black100 dark:text-white custom-height-screen overflow-y-scroll shadow-md">
             <router-view :key="$route.fullPath" class="min-h-[calc(100vh-161px)]"></router-view>
             <footer class="text-center bg-gray-100 dark:bg-black dark:text-white border-t border-transparent dborder-t dark:border-gray-800">
-              <p class="p-4">&copy; Copyright LogicLine 2024 </p>
+              <p class="p-4">&copy; All rights reserved by KAKA.</p>
             </footer>
           </div>
         </div>

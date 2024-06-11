@@ -201,7 +201,7 @@
       </div>
   
       <footer class="text-center bg-gray-100 dark:bg-black dark:text-white border-t border-transparent dborder-t dark:border-gray-800 sticky bottom-0 left-0">
-        <p class="p-4">&copy; Copyright LogicLine 2024 </p>
+        <p class="p-4">&copy; All rights reserved by KAKA.</p>
       </footer>
   
     </div>
