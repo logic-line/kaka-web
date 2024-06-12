@@ -36,7 +36,7 @@
        
       </div>
       <div class="pt-8 flex flex-wrap">
-        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
+        <div v-if="userData!==null" class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
           <div class="w-full flex">
             <div class="w-1/2 font-semibold text-sm">Name</div>
             <div class="w-1/2 text-sm">
@@ -44,7 +44,7 @@
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
+        <div v-if="userData!==null" class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
           <div class="w-full flex justify-between">
             <div class=" font-semibold text-sm">Email</div>
             <div class="ml-2 text-sm">

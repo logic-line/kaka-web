@@ -1,4 +1,4 @@
-# ces-web
+# kaka-admin
 
 ## Project setup
 ```

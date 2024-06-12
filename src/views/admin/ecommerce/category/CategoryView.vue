@@ -115,14 +115,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
-          <div class="w-full flex">
-            <div class="w-1/2 font-semibold text-sm">Offer Applicable</div>
-            <div class="w-1/2 text-sm">
-              {{ item.offer_applicable }}
-            </div>
-          </div>
-        </div> -->
         <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
           <div class="w-full flex">
             <div class="w-1/2 font-semibold text-sm">Icon</div>
@@ -151,17 +143,12 @@ import { defineComponent, ref, reactive, computed, Ref, onMounted, toRefs } from
 
 import PageHeader from "../../../../components/list/PageHeader.vue";
 import { useRoute, useRouter } from "vue-router";
-import { toastrMsg } from "../../../../utils/toastr";
 import { useI18n } from "vue-i18n";
 import CategoryService from "../../../../services/category";
-import { CategoryCreateRequest } from '../../../../types/category';
-import { GoogleMap,Marker } from 'vue3-google-map';
 import Loader from "../../../../components/comp/Loader.vue";
 
-declare var google: any; // Declare the 'google' namespace
-
 export default defineComponent({
-  components: { PageHeader, Loader,GoogleMap, Marker},
+  components: { PageHeader, Loader},
   name: "ServiceAppointment",
   setup() {
     const route = useRoute();
@@ -175,8 +162,6 @@ export default defineComponent({
       roleList: <any>[],
       viewData: {},
       productsData: {},
-      centerS : <any>{},
-      centerD : <any>{},
       categoryID: computed(() => route.params.id.toString()),
     });
 
@@ -211,25 +196,8 @@ export default defineComponent({
                 }
         });
     };
-
-    const formattedText = computed(() => {
-      if (myDiv.value) {
-        const divElement = myDiv.value as HTMLElement;
-        return divElement.innerText.replace(/- /g, "<br>- ");
-      }
-      return "";
-    });
     onMounted(() => {
       getCategoryView();
-      if (myDiv.value) {
-        myDiv.value.innerHTML = formattedText.value;
-      }
-      if (
-        localStorage.getItem("fromRoute") &&
-        localStorage.getItem("fromRoute") == "edit"
-      ) {
-        toastrMsg("User edit successful.");
-      }
       setTimeout(() => {
         state.isLoading = false;
       }, 1000);
