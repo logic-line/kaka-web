@@ -103,11 +103,6 @@
             <div class="w-1/2 font-semibold text-sm">Category</div>
             <div class="w-1/2 text-sm">
               {{ categoryData.title }}
-              <!-- <div class="text-sm w-full" v-for="(item, index) in viewData.category" :key="index">
-              <div class="p-2">
-                  {{item}}
-                </div>
-            </div> -->
             </div>
           </div>
         </div>

@@ -133,7 +133,7 @@
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
+        <div v-if="paymentData!==null" class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
           <div class="w-full flex">
             <div class="w-1/2 font-semibold text-sm">Total Due</div>
             <div class="w-1/2 text-sm">
@@ -141,7 +141,7 @@
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
+        <div v-if="paymentData!==null" class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
           <div class="w-full flex">
             <div class="w-1/2 font-semibold text-sm">Total Paid</div>
             <div class="w-1/2 text-sm">
@@ -149,7 +149,7 @@
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
+        <div v-if="paymentData!==null" class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
           <div class="w-full flex">
             <div class="w-1/2 font-semibold text-sm">Partial Payment Applicable</div>
             <div class="w-1/2 text-sm">
@@ -157,7 +157,7 @@
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
+        <div v-if="paymentData!==null" class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
           <div class="w-full flex">
             <div class="w-1/2 font-semibold text-sm">Partial Amount</div>
             <div class="w-1/2 text-sm">
@@ -165,7 +165,7 @@
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
+        <div v-if="paymentData!==null" class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
           <div class="w-full flex">
             <div class="w-1/2 font-semibold text-sm">Product Type</div>
             <div class="w-1/2 text-sm">
@@ -173,7 +173,7 @@
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
+        <div v-if="paymentData!==null" class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
           <div class="w-full flex">
             <div class="w-1/2 font-semibold text-sm">Unit</div>
             <div class="w-1/2 text-sm">
@@ -181,7 +181,7 @@
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
+        <div  v-if="qurbaniData!==null" class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
           <div class="w-full flex">
             <div class="w-1/2 font-semibold text-sm">Qurbani Animal Name</div>
             <div class="w-1/2 text-sm">
@@ -189,7 +189,7 @@
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
+        <div  v-if="animalTypeData!==null" class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
           <div class="w-full flex">
             <div class="w-1/2 font-semibold text-sm">Qurbani Animal Type</div>
             <div class="w-1/2 text-sm">
@@ -197,7 +197,7 @@
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
+        <div  v-if="qurbaniData!==null" class="w-full md:w-1/3 px-4 py-4 border border-gray-200">
           <div class="w-full flex">
             <div class="w-1/2 font-semibold text-sm">images</div>
             <div class="w-1/2 text-sm">
@@ -221,7 +221,7 @@
             </div>
           </div>
         </div>
-        <div class="w-full px-4 py-4 border border-gray-200">
+        <div v-if="qurbaniData!==null" class="w-full px-4 py-4 border border-gray-200">
           <div class="w-full">
             <div class="font-semibold text-sm">Qurbani Animal Description</div>
             <div class="text-sm text-justify">
@@ -283,7 +283,7 @@ export default defineComponent({
       new QurbaniService()
         .GetQurbaniBookingView(state.bookingID)
         .then((response: any) => {
-          if (response !== undefined) {
+          if (response !== undefined && response.data !== undefined) {
             state.viewData = response.data;
             state.paymentData = response.data.payment;
             state.qurbaniData = response.data.qurbani;
