@@ -42,7 +42,7 @@ import axios from "axios";
 import config from "../../../config";
 import { SaveImageRequest } from '../../../types/imageupload';
 import useVuelidate from "@vuelidate/core";
-import { helpers, required } from "@vuelidate/validators";
+import { helpers, required,maxLength } from "@vuelidate/validators";
 
 
 let saveimage : SaveImageRequest={
@@ -68,6 +68,8 @@ export default defineComponent({
             saveimageform:{
                 name: {
                         required1: helpers.withMessage(`${t('message.required')}`, required),
+                        required2: helpers.withMessage(`${t('message.this-length')}`, maxLength(20)),
+
                         },
             },
         }

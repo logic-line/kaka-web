@@ -414,7 +414,8 @@ export default defineComponent({
          const createRule2 = {
             saveimageform:{
                 name: {
-                        required1: helpers.withMessage(`${t('message.required')}`, required),
+                        required1: helpers.withMessage(`${t('message.required')}`, required ),
+                        required2: helpers.withMessage(`${t('message.this-length')}`, maxLength(20)),
                         },
             },
         }
