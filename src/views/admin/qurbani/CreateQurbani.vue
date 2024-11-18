@@ -353,6 +353,7 @@ export default defineComponent({
             saveimageform:{
                 name: {
                         required1: helpers.withMessage(`${t('message.required')}`, required),
+                        required2: helpers.withMessage(`${t('message.this-length')}`, maxLength(20)),
                         },
             },
         }

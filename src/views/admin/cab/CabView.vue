@@ -3,7 +3,7 @@
     <div v-if="isLoading" class="h-[507px] pt-2 pr-3">
       <Loader :isLoading="isLoading" />
     </div>
-    <PageHeader title="Qurbani View Booking">
+    <PageHeader title="Cab View Booking">
       <template v-slot:body>
         <router-link
           to="/admin/cab/booking"
